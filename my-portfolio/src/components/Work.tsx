@@ -138,7 +138,7 @@ function ProjectFigure({ project: p }: { project: Project }) {
 function FactPlate({ project: p, rows }: { project: Project; rows: PlateRow[] }) {
   const isNahaj = p.slug === 'nahaj'
   return (
-    <div className="bg-field p-5">
+    <div className="fact-plate bg-field p-5">
       {p.icon && (
         <div className="mb-4 flex items-center gap-4">
           {isNahaj ? (

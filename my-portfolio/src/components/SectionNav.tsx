@@ -57,7 +57,7 @@ export function TabBar({ active }: Props) {
                 href={`#${s.id}`}
                 aria-current={current ? 'true' : undefined}
                 className={[
-                  'ui grid h-14 place-items-center truncate px-1 text-[0.8125rem] font-bold no-underline active:bg-field-2',
+                  'ui grid h-14 place-items-center truncate px-0.5 text-xs font-bold no-underline active:bg-field-2 min-[400px]:px-1 min-[400px]:text-[0.8125rem]',
                   current ? 'bg-ink text-on-ink' : 'text-ink-2',
                 ].join(' ')}
               >
