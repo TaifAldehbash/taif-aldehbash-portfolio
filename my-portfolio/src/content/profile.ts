@@ -29,11 +29,8 @@ export const profile = {
       url: 'https://linkedin.com/in/taif-aldehbash',
       display: 'linkedin.com/in/taif-aldehbash',
     },
-    /**
-     * Behance profile. The site hides every Behance link while this is the
-     * placeholder root URL. Replace with the real profile URL to enable them.
-     */
-    behance: { label: 'Behance', url: 'https://www.behance.net/', display: 'behance.net' },
+    /** Behance profile. Every Behance link on the page is hidden if this is ever set back to the site root. */
+    behance: { label: 'Behance', url: 'https://www.behance.net/taifaldehbash', display: 'behance.net/taifaldehbash' },
   },
   /**
    * Optional status line shown in Contact, in Taif's own words. Left empty
