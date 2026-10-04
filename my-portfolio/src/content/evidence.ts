@@ -20,11 +20,9 @@ export interface Evidence {
 const ALIASES: Record<string, string[]> = {
   Firebase: ['Firebase', 'Firebase Realtime Database', 'Cloud Firestore', 'Firebase Cloud Messaging', 'Cloud Storage'],
   'REST APIs': ['REST APIs', 'RESTful APIs'],
-  'async/await': ['async/await', 'Swift Concurrency'],
-  Jira: ['Jira'],
-  Git: ['Git', 'GitHub'],
-  Xcode: ['Xcode', 'TestFlight', 'App Store Connect', 'Swift'],
 }
+
+const projectsWithSource = projects.filter((p) => p.links.some((l) => l.kind === 'github'))
 
 /** Skills whose evidence is not a stack entry. */
 const SPECIAL: Record<string, Evidence[]> = {
@@ -35,13 +33,18 @@ const SPECIAL: Record<string, Evidence[]> = {
   'UI/UX design': [
     { label: 'FinBlade AI', href: '#finblade-ai', kind: 'project', lastUsed: 'now' },
     { label: 'Minute & MinuteDriver', href: '#minute', kind: 'project', lastUsed: 2024 },
-    { label: 'Nahaj', href: '#nahaj', kind: 'project', lastUsed: 2022 },
     { label: 'three case studies', href: '#design', kind: 'case-study', lastUsed: 2025 },
   ],
+  Figma: [{ label: 'three case studies', href: '#design', kind: 'case-study', lastUsed: 2025 }],
   'RTL layout': [{ label: 'Nahaj', href: '#nahaj', kind: 'project', lastUsed: 2022 }],
   'Responsive design': [{ label: 'FinBlade AI', href: '#finblade-ai', kind: 'project', lastUsed: 'now' }],
   React: [{ label: 'this site', href: '#top', kind: 'site', lastUsed: 'now' }],
   'Tailwind CSS': [{ label: 'this site', href: '#top', kind: 'site', lastUsed: 'now' }],
+  Xcode: [
+    { label: 'Minute & MinuteDriver', href: '#minute', kind: 'project', lastUsed: 2024 },
+    { label: 'FastWay', href: '#fastway', kind: 'project', lastUsed: 2021 },
+  ],
+  Git: projectsWithSource.map((p) => ({ label: p.name, href: `#${p.slug}`, kind: 'project' as const, lastUsed: lastYearOf(p.period) })),
 }
 
 function norm(s: string) {
@@ -59,11 +62,17 @@ function later(a: number | 'now', b: number | 'now'): number | 'now' {
   return Math.max(a, b)
 }
 
+/** Which job a featured work project belongs to, so a skill is not cited twice for the same thing. */
+function jobOfProject(href: string): string | null {
+  if (href === '#finblade-ai') return 'ics-arabia'
+  if (href === '#minute') return 'minute-taxi'
+  return null
+}
+
 /** Builds the evidence map once at module load. */
 function build(): Map<string, Evidence[]> {
   const map = new Map<string, Evidence[]>()
   const allSkills = new Set<string>()
-  // Collect every skill name that appears anywhere in stack lists plus the special ones.
   for (const p of projects) p.stack.forEach((s) => allSkills.add(s))
   for (const e of experience) e.stack.forEach((s) => allSkills.add(s))
   Object.keys(SPECIAL).forEach((s) => allSkills.add(s))
@@ -79,7 +88,6 @@ function build(): Map<string, Evidence[]> {
     }
     for (const e of experience) {
       if (e.stack.some((s) => names.has(norm(s)))) {
-        // Only cite a job when no project already covers it.
         const covered = found.some((f) => f.kind === 'project' && jobOfProject(f.href) === e.id)
         if (!covered) found.push({ label: e.company, href: `#${e.id}`, kind: 'experience', lastUsed: lastYearOf(e.period) })
       }
@@ -90,13 +98,6 @@ function build(): Map<string, Evidence[]> {
     if (found.length) map.set(norm(skill), found)
   }
   return map
-}
-
-/** Which job a featured work project belongs to, so a skill is not cited twice for the same thing. */
-function jobOfProject(href: string): string | null {
-  if (href === '#finblade-ai') return 'ics-arabia'
-  if (href === '#minute') return 'minute-taxi'
-  return null
 }
 
 const EVIDENCE = build()

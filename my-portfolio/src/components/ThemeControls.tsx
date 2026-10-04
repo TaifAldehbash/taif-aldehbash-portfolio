@@ -1,6 +1,6 @@
 import { setTheme, useIsDark, useThemeChoice, type ThemeChoice } from '../lib/theme'
 
-/** Header button: one constant label, pressed when the dark scheme is showing. */
+/** Header button: one constant label, underlined and pressed while the dark scheme is showing. */
 export function ThemeToggle() {
   const isDark = useIsDark()
   return (
@@ -8,9 +8,9 @@ export function ThemeToggle() {
       type="button"
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="ui h-11 px-3 text-sm font-medium text-ink-2 hover:text-ink hover:underline decoration-2 underline-offset-[6px]"
+      className="ui h-11 px-3 text-sm font-medium text-ink-2 decoration-2 underline-offset-[6px] hover:text-ink hover:underline aria-[pressed=true]:text-ink aria-[pressed=true]:underline"
     >
-      Dark scheme
+      Dark
     </button>
   )
 }
@@ -25,7 +25,7 @@ const CHOICES: { value: ThemeChoice; label: string }[] = [
 export function ThemeControl() {
   const choice = useThemeChoice()
   return (
-    <fieldset className="theme-control segment border-0 p-0 m-0">
+    <fieldset className="theme-control m-0 border-0 p-0">
       <legend className="sr-only">Colour scheme</legend>
       <div className="segment">
         {CHOICES.map((c) => (
@@ -44,7 +44,7 @@ export function PrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="print-button ui h-10 border-2 border-ink px-3.5 text-sm font-medium hover:bg-ink hover:text-on-ink"
+      className="print-button ui h-11 border-2 border-rule-2 px-3.5 text-sm font-medium hover:bg-ink hover:text-on-ink"
     >
       Print this page
     </button>

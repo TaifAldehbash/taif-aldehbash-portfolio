@@ -16,24 +16,15 @@ export interface PlateRow {
 
 export const plates: Record<string, PlateRow[]> = {
   'finblade-ai': [
-    {
-      term: 'Client work',
-      detail: 'Screens are shown on request.',
-    },
+    { term: 'Client work', detail: 'Screens are shown on request.' },
     { term: 'Product site', detail: [{ text: 'finblade.ai', href: 'https://finblade.ai' }] },
     { term: 'Modules', detail: 'Workflow AI, Apps, Data Management' },
-    { term: 'Since', detail: 'April 2024' },
+    { term: 'My role', detail: 'Lead mobile developer since April 2024' },
   ],
   minute: [
-    {
-      term: 'Apps',
-      detail: [
-        { text: 'Minute on the App Store', href: 'https://apps.apple.com/sa/app/minute/id1633915418' },
-        { text: 'Minute Driver on the App Store', href: 'https://apps.apple.com/sa/app/minute-driver/id1634657781' },
-      ],
-    },
+    { term: 'Apps', detail: 'Minute for riders, Minute Driver for drivers' },
     { term: 'Platform', detail: 'iOS, Swift and UIKit' },
-    { term: 'Released', detail: '2023, both apps on the App Store' },
+    { term: 'Releases', detail: 'Shipped to the App Store, 2023 to 2024' },
   ],
   nahaj: [
     {
@@ -59,7 +50,7 @@ export const plates: Record<string, PlateRow[]> = {
       ],
       note: 'Both on YouTube.',
     },
-    { term: 'Source', detail: [{ text: 'GitHub', href: 'https://github.com/TaifAldehbash/Fastway-Delivery-Application' }] },
+    { term: 'Source', detail: [{ text: 'FastWay on GitHub', href: 'https://github.com/TaifAldehbash/Fastway-Delivery-Application' }] },
     { term: 'Built with', detail: 'Swift, SwiftUI, Apple Maps, Cloud Firestore' },
   ],
 }

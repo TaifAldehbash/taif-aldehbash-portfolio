@@ -4,7 +4,6 @@ import { plates, type PlateRow } from '../content/plates'
 import { litFor } from '../lib/platforms'
 import { PlatformMark } from './PlatformMark'
 import { Section } from './Section'
-import nahajLogo from '../assets/projects/nahaj-logo.png'
 
 export function WorkSection() {
   return (
@@ -15,16 +14,19 @@ export function WorkSection() {
         ))}
       </div>
       <div className="mt-16 lg:mt-24">
-        <h3 className="text-2xl leading-8">Smaller projects</h3>
+        <h3 className="text-2xl leading-[1.875rem]">Smaller projects</h3>
         <ul className="mt-5 border-y border-rule">
           {otherProjects.map((p) => (
-            <li key={p.slug} id={p.slug} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-t border-rule py-4 first:border-t-0">
-              <PlatformMark lit={litFor(p)} size={20} className="self-center" />
-              <span className="text-xl leading-7">
-                {p.links[0] ? <a href={p.links[0].url}>{p.name}</a> : p.name}
+            <li
+              key={p.slug}
+              id={p.slug}
+              className="grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-t border-rule py-4 first:border-t-0 md:grid-cols-[13rem_1fr_auto]"
+            >
+              <span className="text-xl leading-7">{p.links[0] ? <a href={p.links[0].url}>{p.name}</a> : p.name}</span>
+              <span className="ui col-span-2 text-sm leading-5 text-ink-2 md:col-span-1">{p.kicker}</span>
+              <span className="ui tnum col-start-2 row-start-1 text-sm leading-5 text-ink-2 md:col-start-3">
+                {p.contextNote ?? p.context}, {p.period}
               </span>
-              <span className="ui text-sm leading-5 text-ink-2">{p.kicker}</span>
-              <span className="ui ml-auto text-sm leading-5 text-ink-2 tnum">{p.period}</span>
             </li>
           ))}
         </ul>
@@ -41,7 +43,7 @@ function contextLine(p: Project): string {
     case 'University':
       return `${p.org}, ${period}`
     case 'Assignment':
-      return `Assignment, ${period}`
+      return `${p.contextNote ?? 'Assignment'}, ${period}`
     default:
       return `Personal project, ${period}`
   }
@@ -49,8 +51,12 @@ function contextLine(p: Project): string {
 
 function ProjectEntry({ project: p, first }: { project: Project; first: boolean }) {
   const lit = litFor(p)
+  const teamProject = p.roleLabel === 'My part' || p.roleLabel === 'Team'
   return (
-    <article id={p.slug} className={`scroll-mt-20 lg:grid lg:grid-cols-12 lg:gap-6 ${first ? '' : 'border-t border-rule pt-12 lg:pt-16'}`}>
+    <article
+      id={p.slug}
+      className={`scroll-mt-4 md:scroll-mt-20 lg:grid lg:grid-cols-12 lg:gap-6 ${first ? '' : 'border-t border-rule pt-12 lg:pt-16'}`}
+    >
       <div className="lg:col-span-7">
         <div className="flex items-center gap-3">
           <PlatformMark lit={lit} size={28} />
@@ -87,11 +93,18 @@ function ProjectEntry({ project: p, first }: { project: Project; first: boolean 
           <ProjectFigure project={p} />
         </div>
 
-        <ul className="highlights measure mt-5 list-disc space-y-2 pl-5 text-[1.0625rem] leading-[1.6875rem] marker:text-ink-3">
-          {p.highlights.map((h) => (
-            <li key={h}>{h}</li>
-          ))}
-        </ul>
+        {p.highlights.length > 0 && (
+          <>
+            {teamProject && <p className="ui mt-5 text-sm font-bold leading-5 text-ink-2">The app, as the team shipped it</p>}
+            <ul
+              className={`highlights measure list-disc space-y-2 pl-5 text-[1.0625rem] leading-[1.6875rem] marker:text-ink-3 ${teamProject ? 'mt-2' : 'mt-5'}`}
+            >
+              {p.highlights.map((h) => (
+                <li key={h}>{h}</li>
+              ))}
+            </ul>
+          </>
+        )}
 
         {p.links.length > 0 && (
           <p className="ui mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] font-medium">
@@ -136,21 +149,18 @@ function ProjectFigure({ project: p }: { project: Project }) {
 }
 
 function FactPlate({ project: p, rows }: { project: Project; rows: PlateRow[] }) {
-  const isNahaj = p.slug === 'nahaj'
   return (
     <div className="fact-plate bg-field p-5">
       {p.icon && (
-        <div className="mb-4 flex items-center gap-4">
-          {isNahaj ? (
-            <>
-              <img src={p.icon} alt={`${p.name} app icon`} width={64} height={64} className="light-only border border-rule" />
-              <img src={nahajLogo} alt={`${p.name} app icon`} width={86} height={64} className="dark-only h-16 w-auto" />
-            </>
-          ) : (
-            <img src={p.icon} alt={`${p.name} app icon`} width={64} height={64} className="border border-rule" />
-          )}
-          <span className="ui text-sm leading-5 text-ink-2">App icon</span>
-        </div>
+        <img
+          src={p.icon}
+          srcSet={p.icon2x ? `${p.icon} 1x, ${p.icon2x} 2x` : undefined}
+          alt={`${p.name} app icon`}
+          width={64}
+          height={64}
+          loading="lazy"
+          className="mb-4 border border-rule"
+        />
       )}
       <dl className="divide-y divide-rule border-t border-rule">
         {rows.map((r) => (

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useActiveSection } from './hooks/useActiveSection'
 import { SiteHeader, SkipLink } from './components/SiteHeader'
 import { TabBar } from './components/SectionNav'
@@ -15,28 +14,11 @@ function App() {
   const activeRaw = useActiveSection(SECTION_IDS)
   const active = activeRaw === 'top' ? 'work' : activeRaw
 
-  // Print every role expanded, then restore what the reader had open.
-  useEffect(() => {
-    let previouslyClosed: HTMLDetailsElement[] = []
-    const before = () => {
-      previouslyClosed = Array.from(document.querySelectorAll<HTMLDetailsElement>('details:not([open])'))
-      previouslyClosed.forEach((d) => (d.open = true))
-    }
-    const after = () => {
-      previouslyClosed.forEach((d) => (d.open = false))
-      previouslyClosed = []
-    }
-    window.addEventListener('beforeprint', before)
-    window.addEventListener('afterprint', after)
-    return () => {
-      window.removeEventListener('beforeprint', before)
-      window.removeEventListener('afterprint', after)
-    }
-  }, [])
-
   return (
     <>
       <SkipLink />
+      {/* The phone tab bar comes early in the DOM so keyboard users reach it second, as on desktop. */}
+      <TabBar active={active} />
       <SiteHeader active={active} />
       <main id="main" className="pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0">
         <Hero />
@@ -46,7 +28,6 @@ function App() {
         <DesignSection />
         <ContactSection />
       </main>
-      <TabBar active={active} />
     </>
   )
 }

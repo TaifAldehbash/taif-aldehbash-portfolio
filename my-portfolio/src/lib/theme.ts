@@ -3,6 +3,8 @@ import { useSyncExternalStore } from 'react'
 export type ThemeChoice = 'system' | 'light' | 'dark'
 
 const KEY = 'theme'
+const LIGHT_BAR = '#FFFFFF'
+const DARK_BAR = '#111224'
 const listeners = new Set<() => void>()
 
 function read(): ThemeChoice {
@@ -12,6 +14,23 @@ function read(): ThemeChoice {
   } catch {
     return 'system'
   }
+}
+
+function systemDark(): boolean {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+function effectiveDark(): boolean {
+  const choice = read()
+  return choice === 'system' ? systemDark() : choice === 'dark'
+}
+
+/** Keep the browser toolbar colour in step with the scheme actually showing. */
+function syncThemeColor() {
+  const color = effectiveDark() ? DARK_BAR : LIGHT_BAR
+  document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+    m.content = color
+  })
 }
 
 function emit() {
@@ -27,16 +46,21 @@ export function setTheme(choice: ThemeChoice) {
   }
   if (choice === 'system') delete document.documentElement.dataset.theme
   else document.documentElement.dataset.theme = choice
+  syncThemeColor()
   emit()
 }
 
 function subscribe(cb: () => void) {
   listeners.add(cb)
   const mql = window.matchMedia('(prefers-color-scheme: dark)')
-  mql.addEventListener('change', cb)
+  const onChange = () => {
+    syncThemeColor()
+    cb()
+  }
+  mql.addEventListener('change', onChange)
   return () => {
     listeners.delete(cb)
-    mql.removeEventListener('change', cb)
+    mql.removeEventListener('change', onChange)
   }
 }
 
@@ -47,13 +71,5 @@ export function useThemeChoice(): ThemeChoice {
 
 /** Whether the page is currently rendered in the dark scheme. */
 export function useIsDark(): boolean {
-  return useSyncExternalStore(
-    subscribe,
-    () => {
-      const choice = read()
-      if (choice !== 'system') return choice === 'dark'
-      return window.matchMedia('(prefers-color-scheme: dark)').matches
-    },
-    () => false,
-  )
+  return useSyncExternalStore(subscribe, effectiveDark, () => false)
 }

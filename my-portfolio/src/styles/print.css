@@ -1,30 +1,32 @@
-/* Print: the same page as a short résumé on white A4. */
+/* Print: the same page as a short résumé on white A4. Imported after
+ * index.css from main.tsx so it is last in the cascade. */
 @media print {
   @page {
     size: A4;
-    margin: 14mm 16mm;
+    margin: 12mm 14mm;
   }
 
   :root,
-  :root[data-theme='dark'] {
-    color-scheme: light;
-    --c-base: #ffffff;
-    --c-field: #ffffff;
-    --c-field-2: #ffffff;
-    --c-ink: #000000;
-    --c-ink-2: #333333;
-    --c-ink-3: #555555;
-    --c-rule: #999999;
-    --c-on-ink: #ffffff;
-    --c-ios: #a8420e;
-    --c-ios-mark: #a8420e;
-    --c-flutter: #0e6f6a;
-    --c-flutter-mark: #0e6f6a;
-    --c-web: #b5174a;
-    --c-web-mark: #b5174a;
-    --c-design: #8c2c6c;
-    --c-design-mark: #8c2c6c;
-    --mark-opacity: 0.9;
+  :root[data-theme] {
+    color-scheme: light !important;
+    --c-base: #ffffff !important;
+    --c-field: #ffffff !important;
+    --c-field-2: #ffffff !important;
+    --c-ink: #000000 !important;
+    --c-ink-2: #333333 !important;
+    --c-ink-3: #555555 !important;
+    --c-rule: #999999 !important;
+    --c-rule-2: #000000 !important;
+    --c-on-ink: #ffffff !important;
+    --c-ios: #a8420e !important;
+    --c-ios-mark: #a8420e !important;
+    --c-flutter: #0e6f6a !important;
+    --c-flutter-mark: #0e6f6a !important;
+    --c-web: #b5174a !important;
+    --c-web-mark: #b5174a !important;
+    --c-design: #8c2c6c !important;
+    --c-design-mark: #8c2c6c !important;
+    --mark-opacity: 0.9 !important;
   }
 
   * {
@@ -33,10 +35,12 @@
   }
 
   html {
-    font-size: 9.5pt;
+    font-size: 9pt;
   }
 
   body {
+    background: #ffffff !important;
+    color: #000000 !important;
     padding-bottom: 0 !important;
   }
 
@@ -48,7 +52,9 @@
   .theme-control,
   .print-button,
   .fact-plate,
-  .hero-contents {
+  .hero-contents,
+  .hero-mark,
+  .design-figure {
     display: none !important;
   }
 
@@ -62,62 +68,70 @@
   }
 
   section {
-    padding-block: 5mm !important;
+    padding-block: 3mm !important;
   }
 
   section > div {
-    margin-top: 3mm !important;
+    margin-top: 2mm !important;
   }
 
   article {
-    padding-top: 4mm !important;
-  }
-
-  article + article,
-  .space-y-12 > * + *,
-  .lg\:space-y-16 > * + * {
+    padding-top: 2mm !important;
     margin-top: 0 !important;
   }
 
-  details,
+  .space-y-12 > * + *,
+  .lg\:space-y-16 > * + * {
+    margin-top: 3mm !important;
+  }
+
+  li,
   .role-row,
-  li {
+  .skill-row {
     break-inside: avoid;
   }
 
   h1 {
-    font-size: 20pt !important;
+    font-size: 18pt !important;
     line-height: 1.1 !important;
   }
 
   h2 {
-    font-size: 13pt !important;
+    font-size: 12pt !important;
     line-height: 1.2 !important;
+    margin-top: 2mm !important;
   }
 
   h3 {
-    font-size: 11pt !important;
+    font-size: 10.5pt !important;
     line-height: 1.2 !important;
   }
 
   h4 {
-    font-size: 10pt !important;
+    font-size: 9.5pt !important;
     line-height: 1.2 !important;
   }
 
   p,
   li,
   dd,
-  dt,
-  span {
-    font-size: 9.5pt !important;
-    line-height: 1.35 !important;
+  dt {
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
   }
 
   .ui,
   .ui * {
-    font-size: 8.5pt !important;
+    font-size: 8pt !important;
     line-height: 1.3 !important;
+  }
+
+  h1 span,
+  h2 span,
+  h3 span,
+  h4 span {
+    font-size: inherit !important;
+    line-height: inherit !important;
   }
 
   .measure {
@@ -133,7 +147,7 @@
   a[href^='http']:not(.is-url)::after {
     content: ' (' attr(href) ')';
     font-family: var(--font-sans);
-    font-size: 7.5pt !important;
+    font-size: 7pt !important;
     color: var(--c-ink-2);
     word-break: break-all;
   }
@@ -142,26 +156,37 @@
     text-decoration: none;
   }
 
-  /* Expand every role, with or without JavaScript. */
-  details > *:not(summary) {
-    display: block !important;
-  }
-
-  details > summary .toggle-mark {
-    display: none;
-  }
-
+  /* Timeline: always the two-column lanes, never the stacked phone layout. */
   .timeline-chart {
     break-inside: avoid;
+  }
+
+  .timeline-chart .lane {
+    display: grid !important;
+    grid-template-columns: 42mm 1fr !important;
+    gap: 4mm !important;
+    min-height: 0 !important;
+    padding-block: 1.5mm !important;
+  }
+
+  .timeline-chart .lane-track {
+    min-height: 6mm !important;
+    height: 6mm !important;
+    margin-top: 0 !important;
   }
 
   .skills-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 4mm 8mm !important;
+    gap: 2mm 8mm !important;
+    margin-top: 2mm !important;
+  }
+
+  .skill-row {
+    padding-block: 0.5mm !important;
   }
 
   svg {
-    max-height: 18mm;
+    max-height: 16mm;
   }
 }

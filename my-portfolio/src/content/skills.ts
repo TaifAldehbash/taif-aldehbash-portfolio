@@ -16,8 +16,8 @@ export const skills: SkillGroup[] = [
     id: 'ios',
     label: 'iOS',
     platform: 'ios',
-    items: ['Swift', 'SwiftUI', 'UIKit', 'Combine', 'async/await', 'Core Data'],
-    also: ['MapKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'Xcode', 'TestFlight', 'App Store Connect'],
+    items: ['Swift', 'SwiftUI', 'UIKit'],
+    also: ['Combine', 'async/await', 'Core Data', 'MapKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'TestFlight', 'App Store Connect'],
   },
   {
     id: 'cross-platform',
@@ -43,13 +43,13 @@ export const skills: SkillGroup[] = [
   {
     id: 'backend',
     label: 'Backend & data',
-    items: ['Firebase', 'REST APIs', 'SQL'],
-    also: ['Realtime Database', 'Cloud Firestore', 'Cloud Storage', 'Cloud Messaging'],
+    items: ['Firebase', 'REST APIs'],
+    also: ['SQL', 'Realtime Database', 'Cloud Firestore', 'Cloud Storage', 'Cloud Messaging'],
   },
   {
     id: 'tools',
     label: 'Tools',
-    items: ['Git', 'Xcode', 'Jira', 'Docker'],
-    also: ['GitHub', 'Trello', 'Linux', 'Java', 'Python'],
+    items: ['Git', 'Xcode', 'Jira'],
+    also: ['Docker', 'GitHub', 'Trello', 'Linux', 'Java', 'Python'],
   },
 ]

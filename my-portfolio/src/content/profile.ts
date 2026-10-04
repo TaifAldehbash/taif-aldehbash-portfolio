@@ -2,9 +2,8 @@ export const profile = {
   name: 'Taif Aldehbash',
   fullName: 'Taif Malouh Aldehbash',
   /**
-   * Arabic rendering of the name. Left empty until the spelling is confirmed;
-   * the page renders the line only when this is non-empty.
-   * Candidate: 'طيف الدهبش'
+   * Arabic rendering of the name. Ask Taif for the exact spelling; do not
+   * guess. The page renders the line only when this is non-empty.
    */
   arabicName: '',
   title: 'Software Engineer',
@@ -13,10 +12,10 @@ export const profile = {
   timezone: 'GMT+3',
   email: 'taifmaldehbash@gmail.com',
   /**
-   * The opening paragraph, in the first person. Two or three plain sentences.
+   * The opening paragraph, in the first person. Three plain sentences.
    */
   intro:
-    'I am a software engineer in Riyadh. For the last three years I have built native iOS apps in Swift, Flutter apps, and web front-ends in Vue and Nuxt, including a year as the only iOS developer behind two apps on the App Store. I also trained in UI/UX design, so I tend to own a feature from the first wireframe to the release.',
+    'I am a software engineer in Riyadh. For the last three years I have built native iOS apps in Swift, Flutter apps, and web front-ends in Vue and Nuxt, including a year as the only iOS developer behind two apps on the App Store. I also trained in UI/UX design, so I usually draw the screens I then build.',
   /** Short line used in metadata. */
   tagline: 'Software engineer in Riyadh shipping native iOS, Flutter and web front-ends.',
   languages: [
@@ -36,8 +35,12 @@ export const profile = {
      */
     behance: { label: 'Behance', url: 'https://www.behance.net/', display: 'behance.net' },
   },
-  /** Current status line. Edit freely. */
-  availability: 'Open to senior front-end and mobile roles, in Riyadh or remote.',
+  /**
+   * Optional status line shown in Contact, in Taif's own words. Left empty
+   * on purpose: the site must not announce a job search on her behalf.
+   * Example: 'Open to front-end and mobile roles, in Riyadh or remote.'
+   */
+  availability: '',
 } as const
 
 export type Profile = typeof profile

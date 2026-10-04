@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './styles/fonts.css';
-@import './styles/print.css';
 
 /*
  * Colour tokens. Every value is a measured pixel from something Taif shipped
@@ -21,6 +20,7 @@
   --c-ink-2: #54546c;
   --c-ink-3: #6b6c82;
   --c-rule: #8a8da1;
+  --c-rule-2: #16172a;
   --c-on-ink: #ffffff;
 
   --c-ios: #a8420e;
@@ -46,6 +46,7 @@
     --c-ink-2: #b7b9cc;
     --c-ink-3: #8f92ab;
     --c-rule: #5e6080;
+    --c-rule-2: #b7b9cc;
     --c-on-ink: #111224;
     --c-ios: #ffae8c;
     --c-ios-mark: #ffae8c;
@@ -56,6 +57,13 @@
     --c-design: #d679b5;
     --c-design-mark: #d679b5;
     --mark-opacity: 0.9;
+  }
+
+  @media (prefers-contrast: more) {
+    :root:not([data-theme='light']) {
+      --c-rule: #b7b9cc;
+      --c-ink-3: #b7b9cc;
+    }
   }
 }
 
@@ -68,6 +76,7 @@
   --c-ink-2: #b7b9cc;
   --c-ink-3: #8f92ab;
   --c-rule: #5e6080;
+  --c-rule-2: #b7b9cc;
   --c-on-ink: #111224;
   --c-ios: #ffae8c;
   --c-ios-mark: #ffae8c;
@@ -85,6 +94,11 @@
     --c-rule: var(--c-ink-2);
     --c-ink-3: var(--c-ink-2);
   }
+
+  :root[data-theme='dark'] {
+    --c-rule: #b7b9cc;
+    --c-ink-3: #b7b9cc;
+  }
 }
 
 @theme inline {
@@ -96,6 +110,7 @@
   --color-ink-2: var(--c-ink-2);
   --color-ink-3: var(--c-ink-3);
   --color-rule: var(--c-rule);
+  --color-rule-2: var(--c-rule-2);
   --color-on-ink: var(--c-on-ink);
   --color-ios: var(--c-ios);
   --color-flutter: var(--c-flutter);
@@ -105,7 +120,7 @@
   --color-current: currentColor;
 
   --font-serif: 'Spectral', 'Spectral Fallback', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Atkinson Hyperlegible Next Variable', 'Atkinson Fallback', system-ui, Arial, sans-serif;
+  --font-sans: 'Public Sans Variable', 'Public Sans Fallback', system-ui, Arial, sans-serif;
   --font-arabic: 'Markazi Text', 'Noto Naskh Arabic', 'Geeza Pro', serif;
 
   --radius-*: initial;
@@ -118,8 +133,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
-    scroll-padding-top: 4.5rem;
-    scroll-padding-bottom: 4.5rem;
+  }
+
+  /* Phones: keep a focused anchor target clear of the fixed tab bar. */
+  @media (max-width: 47.99rem) {
+    html {
+      scroll-padding-bottom: 4.5rem;
+    }
   }
 
   body {
@@ -128,7 +148,7 @@
     color: var(--c-ink);
     font-family: var(--font-serif);
     font-size: 1.0625rem;
-    line-height: 1.6;
+    line-height: 1.6875rem;
     min-height: 100dvh;
   }
 
@@ -195,15 +215,6 @@
     unicode-bidi: isolate;
   }
 
-  details > summary {
-    list-style: none;
-    cursor: pointer;
-  }
-
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-
   img {
     display: block;
     max-width: 100%;
@@ -239,7 +250,7 @@
 
   /* Structural rule above section titles, under the header, above the tab bar. */
   .rule-2 {
-    border-top: 2px solid var(--c-ink);
+    border-top: 2px solid var(--c-rule-2);
   }
 
   .rule-1 {
@@ -251,12 +262,12 @@
     max-width: 33rem;
   }
 
-  /* Native tabular figures for dates and years. */
+  /* Tabular figures for dates and years. */
   .tnum {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Links inside UI set in the sans face. */
+  /* Interface text in the sans face. */
   .ui {
     font-family: var(--font-sans);
   }
@@ -264,14 +275,14 @@
   /* Segmented control used by the theme chooser. */
   .segment {
     display: inline-flex;
-    border: 2px solid var(--c-ink);
+    border: 2px solid var(--c-rule-2);
   }
 
   .segment label {
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 2.5rem;
+    min-height: calc(2.75rem - 4px);
     padding-inline: 0.875rem;
     font-family: var(--font-sans);
     font-size: 0.875rem;
@@ -303,37 +314,11 @@
     z-index: 1;
   }
 
-  /* Disclosure marker for the role list: a plus that becomes a minus. */
-  .toggle-mark::before {
-    content: '+';
+  /* Year-only span on the timeline: hatched, same weight as the solid bars. */
+  .bar-hatched {
+    background: repeating-linear-gradient(45deg, var(--c-ink) 0 2px, transparent 2px 6px);
+    border: 1px solid var(--c-ink-2);
   }
-
-  details[open] > summary .toggle-mark::before {
-    content: '\2212';
-  }
-
-  /* Images with a light and a dark variant. */
-  .dark-only {
-    display: none;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .light-only {
-    display: none;
-  }
-
-  :root:not([data-theme='light']) .dark-only {
-    display: block;
-  }
-}
-
-:root[data-theme='dark'] .light-only {
-  display: none;
-}
-
-:root[data-theme='dark'] .dark-only {
-  display: block;
 }
 
 /* Reduced motion: nothing on this page animates on load or scroll, but the
@@ -349,7 +334,26 @@
 
 @media (forced-colors: active) {
   .rule-2,
-  .rule-1 {
+  .rule-1,
+  .segment,
+  .bar-hatched {
     border-color: CanvasText;
+  }
+
+  .timeline-chart .bar-solid {
+    forced-color-adjust: none;
+    background: CanvasText;
+    border: 2px solid CanvasText;
+  }
+
+  .segment label:has(input:checked) {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  nav a[aria-current='true'] {
+    outline: 3px solid Highlight;
+    outline-offset: -3px;
   }
 }

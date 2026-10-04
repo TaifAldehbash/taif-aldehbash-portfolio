@@ -36,7 +36,7 @@ export const experience: Experience[] = [
       'Led a full refactor and UI/UX redesign of the mobile app, making it responsive and accessible across device sizes.',
       'Worked with cross-functional teams to bring generative-AI features to both web and mobile.',
     ],
-    stack: ['Flutter', 'Dart', 'Swift', 'Vue.js', 'Nuxt', 'TypeScript', 'HTML', 'CSS', 'REST APIs'],
+    stack: ['Flutter', 'Dart', 'Swift', 'Vue.js', 'Nuxt', 'TypeScript', 'HTML', 'CSS'],
     platforms: ['ios', 'flutter', 'web'],
   },
   {
@@ -69,7 +69,7 @@ export const experience: Experience[] = [
     summary:
       'Documented business processes, wrote user stories and requirements, and verified compliance with SAMA regulations.',
     bullets: [],
-    stack: ['Requirements', 'User stories', 'Jira'],
+    stack: ['Requirements', 'User stories'],
     platforms: [],
   },
   {

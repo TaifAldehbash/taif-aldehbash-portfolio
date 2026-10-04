@@ -7,9 +7,9 @@ export function SkillsSection() {
   return (
     <Section id="skills" title="Skills">
       <p className="measure text-[1.0625rem] leading-[1.6875rem] text-ink-2 lg:text-lg lg:leading-[1.8125rem]">
-        Each skill names the work it was used in. Nothing here is rated.
+        Each skill names the work it was used in.
       </p>
-      <div className="skills-grid mt-8 grid gap-10 md:grid-cols-2 md:gap-x-12 lg:gap-x-16">
+      <div className="skills-grid mt-8 grid gap-10 lg:grid-cols-2 lg:gap-x-16">
         {skills.map((g) => (
           <Group key={g.id} group={g} />
         ))}
@@ -20,7 +20,7 @@ export function SkillsSection() {
 
 function Group({ group: g }: { group: SkillGroup }) {
   return (
-    <div id={`skills-${g.id}`} className="skill-group scroll-mt-20">
+    <div id={`skills-${g.id}`} className="skill-group scroll-mt-4 md:scroll-mt-20">
       <h3 className="ui flex items-center gap-2 text-sm font-bold leading-4">
         {g.platform && <MarkGlyph platform={g.platform} />}
         {g.label}
@@ -43,10 +43,10 @@ function SkillRow({ name }: { name: string }) {
   const evidence = evidenceFor(name)
   const last = lastUsedOf(name)
   return (
-    <li className="border-t border-rule py-2.5 first:border-t-0 md:grid md:grid-cols-[9.5rem_1fr] md:gap-4">
+    <li className="skill-row border-t border-rule py-2.5 first:border-t-0 lg:grid lg:grid-cols-[9.5rem_1fr] lg:gap-4">
       <span className="text-[1.0625rem] leading-[1.6875rem]">{name}</span>
       {evidence.length > 0 && (
-        <span className="ui block text-sm leading-5 text-ink-2 md:pt-1">
+        <span className="ui block text-sm leading-5 text-ink-2 lg:pt-1">
           Used in{' '}
           {evidence.map((e, i) => (
             <span key={e.href}>

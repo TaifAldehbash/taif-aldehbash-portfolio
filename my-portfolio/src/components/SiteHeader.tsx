@@ -4,7 +4,7 @@ import { profile } from '../content/profile'
 
 export function SiteHeader({ active }: { active: string | null }) {
   return (
-    <header className="site-header sticky top-0 z-20 hidden border-b-2 border-ink bg-canvas md:block">
+    <header className="site-header sticky top-0 z-20 hidden border-b-2 border-rule-2 bg-canvas md:block">
       <div className="wrap flex h-14 items-center justify-between gap-6">
         <a href="#top" className="font-serif text-xl font-semibold no-underline">
           {profile.name}

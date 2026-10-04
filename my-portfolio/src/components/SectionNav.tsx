@@ -28,7 +28,7 @@ export function HeaderNav({ active }: Props) {
                 className={[
                   'ui block px-3 py-2.5 text-[0.9375rem] font-medium no-underline decoration-2 underline-offset-[6px]',
                   current ? 'text-ink underline' : 'text-ink-2 hover:text-ink hover:underline',
-                  isContact ? 'ml-2 border-2 border-ink px-3.5 text-ink' : '',
+                  isContact ? 'ml-2 border-2 border-rule-2 px-3.5 py-2 text-ink' : '',
                 ].join(' ')}
               >
                 {s.label}
@@ -46,7 +46,7 @@ export function TabBar({ active }: Props) {
   return (
     <nav
       aria-label="Sections"
-      className="tab-bar fixed inset-x-0 bottom-0 z-20 border-t-2 border-ink bg-canvas pb-[env(safe-area-inset-bottom)] md:hidden"
+      className="tab-bar fixed inset-x-0 bottom-0 z-20 border-t-2 border-rule-2 bg-canvas pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="flex">
         {SECTIONS.map((s) => {
@@ -57,7 +57,7 @@ export function TabBar({ active }: Props) {
                 href={`#${s.id}`}
                 aria-current={current ? 'true' : undefined}
                 className={[
-                  'ui grid h-14 place-items-center truncate px-0.5 text-xs font-bold no-underline active:bg-field-2 min-[400px]:px-1 min-[400px]:text-[0.8125rem]',
+                  'ui grid h-14 place-items-center truncate px-0 text-xs font-bold no-underline active:bg-field-2 min-[360px]:px-1 min-[360px]:text-[0.8125rem]',
                   current ? 'bg-ink text-on-ink' : 'text-ink-2',
                 ].join(' ')}
               >
