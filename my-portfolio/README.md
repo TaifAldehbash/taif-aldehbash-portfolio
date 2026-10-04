@@ -40,7 +40,7 @@ Everything the visitor reads comes from `src/content`. The timeline, the "Used i
 
 ## The colour system
 
-Hue means platform and nothing else: iOS is peach, Flutter is teal, Web is pink, Design is plum. The four values are sampled from the Nahaj and FastWay app icons in `src/assets/projects`. Each project shows the mark with only its own platforms lit. Light and dark schemes are defined as CSS custom properties at the top of `src/index.css`; the dark scheme follows the system and can be overridden with the control in the footer.
+Hue means platform and nothing else: iOS is peach, Flutter is teal, Web is pink, Design is plum. The four values are sampled from the Nahaj and FastWay app icons in `src/assets/projects`. Each project shows the mark with only its own platforms lit. Dark is the default scheme. Light and system-following are explicit choices in the footer control. Both palettes are CSS custom properties at the top of `src/index.css`.
 
 ## Deploying
 

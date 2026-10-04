@@ -1,6 +1,10 @@
 import { useSyncExternalStore } from 'react'
 
-export type ThemeChoice = 'system' | 'light' | 'dark'
+/**
+ * Colour scheme choice. Dark is the default: with nothing stored the page is
+ * dark whatever the OS prefers. "light" forces light; "system" follows the OS.
+ */
+export type ThemeChoice = 'dark' | 'light' | 'system'
 
 const KEY = 'theme'
 const LIGHT_BAR = '#FFFFFF'
@@ -10,9 +14,9 @@ const listeners = new Set<() => void>()
 function read(): ThemeChoice {
   try {
     const v = localStorage.getItem(KEY)
-    return v === 'light' || v === 'dark' ? v : 'system'
+    return v === 'light' || v === 'system' ? v : 'dark'
   } catch {
-    return 'system'
+    return 'dark'
   }
 }
 
@@ -39,13 +43,12 @@ function emit() {
 
 export function setTheme(choice: ThemeChoice) {
   try {
-    if (choice === 'system') localStorage.removeItem(KEY)
+    if (choice === 'dark') localStorage.removeItem(KEY)
     else localStorage.setItem(KEY, choice)
   } catch {
     /* storage unavailable: the attribute still applies for this page view */
   }
-  if (choice === 'system') delete document.documentElement.dataset.theme
-  else document.documentElement.dataset.theme = choice
+  document.documentElement.dataset.theme = choice
   syncThemeColor()
   emit()
 }
@@ -64,12 +67,12 @@ function subscribe(cb: () => void) {
   }
 }
 
-/** The stored choice: system, light or dark. */
+/** The stored choice: dark (default), light or system. */
 export function useThemeChoice(): ThemeChoice {
-  return useSyncExternalStore(subscribe, read, () => 'system')
+  return useSyncExternalStore(subscribe, read, () => 'dark')
 }
 
 /** Whether the page is currently rendered in the dark scheme. */
 export function useIsDark(): boolean {
-  return useSyncExternalStore(subscribe, effectiveDark, () => false)
+  return useSyncExternalStore(subscribe, effectiveDark, () => true)
 }

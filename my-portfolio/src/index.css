@@ -11,64 +11,9 @@
  * base so they can carry meaning at text size.
  */
 :root {
-  color-scheme: light;
-
-  --c-base: #ffffff;
-  --c-field: #f1f3f7;
-  --c-field-2: #e6e9f0;
-  --c-ink: #16172a;
-  --c-ink-2: #54546c;
-  --c-ink-3: #6b6c82;
-  --c-rule: #8a8da1;
-  --c-rule-2: #16172a;
-  --c-on-ink: #ffffff;
-
-  --c-ios: #a8420e;
-  --c-ios-mark: #fc9c74;
-  --c-flutter: #0e6f6a;
-  --c-flutter-mark: #64ccc4;
-  --c-web: #b5174a;
-  --c-web-mark: #fc6c94;
-  --c-design: #8c2c6c;
-  --c-design-mark: #8c2c6c;
-
-  --c-focus: var(--c-ink);
-  --mark-opacity: 0.85;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    color-scheme: dark;
-    --c-base: #111224;
-    --c-field: #1a1b32;
-    --c-field-2: #232546;
-    --c-ink: #ecedf5;
-    --c-ink-2: #b7b9cc;
-    --c-ink-3: #8f92ab;
-    --c-rule: #5e6080;
-    --c-rule-2: #b7b9cc;
-    --c-on-ink: #111224;
-    --c-ios: #ffae8c;
-    --c-ios-mark: #ffae8c;
-    --c-flutter: #6fd6ce;
-    --c-flutter-mark: #6fd6ce;
-    --c-web: #ff8aab;
-    --c-web-mark: #ff8aab;
-    --c-design: #d679b5;
-    --c-design-mark: #d679b5;
-    --mark-opacity: 0.9;
-  }
-
-  @media (prefers-contrast: more) {
-    :root:not([data-theme='light']) {
-      --c-rule: #b7b9cc;
-      --c-ink-3: #b7b9cc;
-    }
-  }
-}
-
-:root[data-theme='dark'] {
+  /* Dark is the default scheme. Light is an explicit choice; "system" follows the OS. */
   color-scheme: dark;
+
   --c-base: #111224;
   --c-field: #1a1b32;
   --c-field-2: #232546;
@@ -78,6 +23,7 @@
   --c-rule: #5e6080;
   --c-rule-2: #b7b9cc;
   --c-on-ink: #111224;
+
   --c-ios: #ffae8c;
   --c-ios-mark: #ffae8c;
   --c-flutter: #6fd6ce;
@@ -86,18 +32,79 @@
   --c-web-mark: #ff8aab;
   --c-design: #d679b5;
   --c-design-mark: #d679b5;
+
+  --c-focus: var(--c-ink);
   --mark-opacity: 0.9;
+}
+
+/*
+ * Light scheme tokens. Every value is a measured pixel from something Taif
+ * shipped (the Nahaj app icon, the FastWay app icon) or a derivative with a
+ * verified contrast ratio. Hue means platform and nothing else:
+ *   iOS = peach, Flutter = teal, Web = pink, Design = plum.
+ */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --c-base: #ffffff;
+  --c-field: #f1f3f7;
+  --c-field-2: #e6e9f0;
+  --c-ink: #16172a;
+  --c-ink-2: #54546c;
+  --c-ink-3: #6b6c82;
+  --c-rule: #8a8da1;
+  --c-rule-2: #16172a;
+  --c-on-ink: #ffffff;
+  --c-ios: #a8420e;
+  --c-ios-mark: #fc9c74;
+  --c-flutter: #0e6f6a;
+  --c-flutter-mark: #64ccc4;
+  --c-web: #b5174a;
+  --c-web-mark: #fc6c94;
+  --c-design: #8c2c6c;
+  --c-design-mark: #8c2c6c;
+  --mark-opacity: 0.85;
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme='system'] {
+    color-scheme: light;
+    --c-base: #ffffff;
+    --c-field: #f1f3f7;
+    --c-field-2: #e6e9f0;
+    --c-ink: #16172a;
+    --c-ink-2: #54546c;
+    --c-ink-3: #6b6c82;
+    --c-rule: #8a8da1;
+    --c-rule-2: #16172a;
+    --c-on-ink: #ffffff;
+    --c-ios: #a8420e;
+    --c-ios-mark: #fc9c74;
+    --c-flutter: #0e6f6a;
+    --c-flutter-mark: #64ccc4;
+    --c-web: #b5174a;
+    --c-web-mark: #fc6c94;
+    --c-design: #8c2c6c;
+    --c-design-mark: #8c2c6c;
+    --mark-opacity: 0.85;
+  }
 }
 
 @media (prefers-contrast: more) {
   :root {
-    --c-rule: var(--c-ink-2);
-    --c-ink-3: var(--c-ink-2);
-  }
-
-  :root[data-theme='dark'] {
     --c-rule: #b7b9cc;
     --c-ink-3: #b7b9cc;
+  }
+
+  :root[data-theme='light'] {
+    --c-rule: #54546c;
+    --c-ink-3: #54546c;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root[data-theme='system'] {
+      --c-rule: #54546c;
+      --c-ink-3: #54546c;
+    }
   }
 }
 

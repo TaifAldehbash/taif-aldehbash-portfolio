@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -9,8 +9,7 @@
       content="Taif Aldehbash is a software engineer in Riyadh shipping native iOS, Flutter and web front-ends: FinBlade AI, Minute and MinuteDriver, Nahaj and FastWay."
     />
     <meta name="author" content="Taif Aldehbash" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111224" />
+    <meta name="theme-color" content="#111224" />
     <meta property="og:title" content="Taif Aldehbash, software engineer" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Software engineer in Riyadh shipping native iOS, Flutter and web front-ends." />
@@ -26,11 +25,15 @@
     <link rel="preload" href="/fonts/spectral-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <script>
-      // Apply a stored colour-scheme override before first paint. No stored
-      // value means the page follows the system.
+      // Dark is the default. A stored choice of "light" or "system" is applied
+      // before first paint; anything else leaves the page dark.
       try {
         var t = localStorage.getItem('theme')
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+        document.documentElement.dataset.theme = t === 'light' || t === 'system' ? t : 'dark'
+        if (t === 'light' || (t === 'system' && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          var m = document.querySelector('meta[name="theme-color"]')
+          if (m) m.content = '#FFFFFF'
+        }
       } catch (e) {}
     </script>
   </head>
