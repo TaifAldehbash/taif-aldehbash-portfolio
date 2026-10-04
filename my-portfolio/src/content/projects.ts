@@ -56,7 +56,7 @@ export const projects: Project[] = [
       'Built native iOS features and platform integrations in Swift to extend what the Flutter app can do.',
       'Built web features in Vue and Nuxt with TypeScript against the same platform APIs.',
     ],
-    links: [],
+    links: [{ label: 'Product site', url: 'https://finblade.ai', kind: 'live' }],
     sourcePrivate: true,
     featured: true,
   },
@@ -79,7 +79,10 @@ export const projects: Project[] = [
       'Ran TestFlight cycles and App Store submissions for each release.',
       'Identified and fixed performance bottlenecks to keep both apps fast and reliable.',
     ],
-    links: [],
+    links: [
+      { label: 'Minute on the App Store', url: 'https://apps.apple.com/sa/app/minute/id1633915418', kind: 'appstore' },
+      { label: 'Minute Driver on the App Store', url: 'https://apps.apple.com/sa/app/minute-driver/id1634657781', kind: 'appstore' },
+    ],
     sourcePrivate: true,
     featured: true,
   },
@@ -152,6 +155,7 @@ export const projects: Project[] = [
       'Arabic-first, right-to-left interface for young readers, with a custom logo and mascot.',
     ],
     links: [
+      { label: 'App Store', url: 'https://apps.apple.com/sa/app/nahaj-%D9%86%D9%87%D8%AC/id1601459555', kind: 'appstore' },
       { label: 'Student demo', url: 'https://www.youtube.com/watch?v=QSALU3Rya8c', kind: 'video' },
       { label: 'Admin demo', url: 'https://youtu.be/D2UWrvB_WgM', kind: 'video' },
       { label: 'Source', url: 'https://github.com/TaifAldehbash/Nahaj-game-based-learning-Application', kind: 'github' },
