@@ -1,6 +1,5 @@
 import nahajIcon from '../assets/projects/nahaj-icon.png'
 import fastwayIcon from '../assets/projects/fastway-icon.png'
-import reportitIcon from '../assets/projects/reportit-icon.png'
 
 export type Platform = 'iOS' | 'iPadOS' | 'Flutter' | 'Web' | 'Swift Package'
 export type Context = 'Work' | 'Personal' | 'Assignment' | 'University'
@@ -87,54 +86,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: 'kalemah',
-    name: 'Kalemah',
-    arabicName: 'كلمة',
-    kicker: 'A daily Arabic five-letter word puzzle for iOS',
-    context: 'Personal',
-    period: '2026',
-    year: 2026,
-    role: 'Design and development',
-    platforms: ['iOS'],
-    stack: ['Swift', 'SwiftUI', 'Swift Concurrency', 'XcodeGen'],
-    summary:
-      'One Arabic word a day, six attempts, a keyboard laid out right to left. Arabic is the first-class audience here, not a translation: typed letters and the word list both pass through a normaliser that strips diacritics and unifies alef forms, so a guess is never rejected over a hamza.',
-    highlights: [
-      'Custom three-row Arabic keyboard whose key colours only ever upgrade, never downgrade.',
-      'Deterministic daily word from a fixed epoch, with saved state keyed by day so a reopened puzzle resumes.',
-      'Hard mode that enforces confirmed letters, with Arabic error toasts naming the letter.',
-      'Two-tier hint system across 19 semantic categories, unlocked on the third attempt.',
-      'Whole UI driven from one design-token file: colour, type, spacing, sizing and motion, in light and dark.',
-    ],
-    links: [],
-    sourcePrivate: true,
-    featured: true,
-  },
-  {
-    slug: 'stitch',
-    name: 'Stitch',
-    kicker: 'Drag-and-drop mini website builder with JSON import and export',
-    context: 'Assignment',
-    period: 'Oct 2025',
-    year: 2025,
-    role: 'Design and development',
-    platforms: ['Web'],
-    stack: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Zod', 'dnd-kit', 'Framer Motion'],
-    summary:
-      'A front-end take-home turned into a working tool: add hero, features, FAQ and footer sections from a catalogue, edit their text and lists in an inspector, reorder them by dragging, and export the whole page as validated JSON. Built in a few days on a stack I had not used before, and deployed to Vercel.',
-    highlights: [
-      'Layout modelled as a Zod discriminated union, so an imported file is validated field by field with readable error paths.',
-      'Drag-to-reorder canvas on dnd-kit with an 8px activation distance so click-to-select and drag never conflict.',
-      'Page stays server-rendered: the four interactive panels are client-only leaves pushed down the tree.',
-      'Persisted Zustand store writes only the layout to localStorage, so a refresh never loses work.',
-    ],
-    links: [
-      { label: 'Live demo', url: 'https://stitch-one.vercel.app', kind: 'live' },
-      { label: 'Source', url: 'https://github.com/TaifAldehbash/Stitch', kind: 'github' },
-    ],
-    featured: true,
-  },
-  {
     slug: 'nahaj',
     name: 'Nahaj',
     arabicName: 'نهج',
@@ -164,57 +115,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: 'thmanyah',
-    name: 'Thmanyah podcast client',
-    kicker: 'SwiftUI podcast browser with paginated feed and tested view models',
-    context: 'Assignment',
-    period: 'Jul 2025',
-    year: 2025,
-    role: 'Development',
-    platforms: ['iOS'],
-    stack: ['Swift', 'SwiftUI', 'async/await', 'XCTest'],
-    summary:
-      'A take-home reproducing the home feed and search of a podcast app. The interesting part is underneath: four server-driven section layouts rendered from one card component, decoders that tolerate an inconsistent API instead of crashing on it, and unit tests that exercise both view models through a mock service.',
-    highlights: [
-      'Cursor-paginated home feed and a 200 ms debounced search, both on async/await.',
-      'Defensive decoding: ids arriving under four different keys, numbers arriving as strings.',
-      'View models behind a protocol with a mock service for XCTest.',
-      'Light and dark colour tokens, and a splash that punches the logo out of a colour overlay before scaling open.',
-    ],
-    links: [{ label: 'Source', url: 'https://github.com/TaifAldehbash/Thmanyah', kind: 'github' }],
-    featured: true,
-  },
-  {
-    slug: 'reportit',
-    name: 'ReportIt',
-    kicker: 'Bug reporter that files screenshots and notes into Google Sheets',
-    context: 'Personal',
-    period: 'Apr 2024',
-    year: 2024,
-    role: 'Design and development',
-    platforms: ['iOS', 'Swift Package'],
-    stack: ['Swift', 'SwiftUI', 'Google Sheets API', 'Firebase Storage', 'Google Sign-In', 'Swift Package Manager'],
-    summary:
-      'A small internal tool treated like a product. Testers describe a bug, attach a photo or capture the current screen, and the report lands as a row in a Google Sheet with the screenshot in Firebase Storage. The Google and Firebase plumbing was split out into GoogleCloudKit, a Swift package anyone can import.',
-    highlights: [
-      'Designed in Figma first, then built with asset-catalogue colour tokens, an animated splash and an enum-driven router.',
-      'Upload pipeline creates a per-day sheet tab with a header row, stores the screenshot, then appends the report.',
-      'Home screen stat tile with the running bug count and a list of the latest reports.',
-      'GoogleCloudKit package: Google Sign-In, OAuth scopes, Sheets API and Cloud Storage in one dependency.',
-    ],
-    links: [
-      { label: 'Source', url: 'https://github.com/TaifAldehbash/RportIt', kind: 'github' },
-      { label: 'GoogleCloudKit package', url: 'https://github.com/TaifAldehbash/GoogleCloudKit', kind: 'github' },
-      {
-        label: 'Figma',
-        url: 'https://www.figma.com/file/cdFofT6CRVsWjtBMa4snj3/Untitled?type=design&node-id=0%3A1&mode=design',
-        kind: 'figma',
-      },
-    ],
-    icon: reportitIcon,
-    featured: true,
-  },
-  {
     slug: 'fastway',
     name: 'FastWay',
     kicker: 'Two-sided campus delivery app with courier bidding and live tracking',
@@ -238,7 +138,7 @@ export const projects: Project[] = [
       { label: 'Source', url: 'https://github.com/TaifAldehbash/Fastway-Delivery-Application', kind: 'github' },
     ],
     icon: fastwayIcon,
-    featured: false,
+    featured: true,
   },
   {
     slug: 'nyt-articles',

@@ -12,13 +12,13 @@ export const skills: SkillGroup[] = [
     id: 'ios',
     label: 'iOS',
     items: ['Swift', 'SwiftUI', 'UIKit', 'Combine', 'async/await', 'Core Data'],
-    also: ['MapKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'WidgetKit', 'Swift Package Manager', 'TestFlight', 'App Store Connect', 'XcodeGen'],
+    also: ['MapKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'Xcode', 'TestFlight', 'App Store Connect'],
   },
   {
     id: 'web',
     label: 'Web',
-    items: ['TypeScript', 'Vue.js', 'Nuxt', 'React', 'Next.js', 'Tailwind CSS'],
-    also: ['JavaScript', 'HTML', 'CSS', 'Bootstrap', 'Zustand', 'Zod', 'Vite', 'Responsive design', 'Accessibility'],
+    items: ['TypeScript', 'Vue.js', 'Nuxt', 'React', 'Tailwind CSS'],
+    also: ['JavaScript', 'HTML', 'CSS', 'Bootstrap', 'Vite', 'Responsive design', 'Accessibility'],
   },
   {
     id: 'cross-platform',
@@ -30,7 +30,7 @@ export const skills: SkillGroup[] = [
     id: 'backend',
     label: 'Backend & data',
     items: ['Firebase', 'REST APIs', 'SQL'],
-    also: ['Realtime Database', 'Cloud Firestore', 'Cloud Storage', 'Google Sheets API', 'OAuth'],
+    also: ['Realtime Database', 'Cloud Firestore', 'Cloud Storage', 'Cloud Messaging'],
   },
   {
     id: 'design',
