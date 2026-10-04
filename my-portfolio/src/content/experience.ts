@@ -1,15 +1,21 @@
+import type { PlatformKey } from '../lib/platforms'
+
 export interface Experience {
   id: string
   company: string
   role: string
   location: string
+  /** "Apr 2024", "2021". Month and year, or year only when that is all that is recorded. */
   start: string
-  end: string | 'Present'
-  /** Short label for compact timelines, e.g. "2024 –" */
+  /** "Sept 2024", "2021" or "Present". */
+  end: string
+  /** Short label for compact lines, e.g. "2024 – now" */
   period: string
   summary: string
   bullets: string[]
   stack: string[]
+  /** Platforms shipped in this role; drawn as glyphs in the timeline. */
+  platforms: PlatformKey[]
 }
 
 export const experience: Experience[] = [
@@ -30,10 +36,11 @@ export const experience: Experience[] = [
       'Led a full refactor and UI/UX redesign of the mobile app, making it responsive and accessible across device sizes.',
       'Worked with cross-functional teams to bring generative-AI features to both web and mobile.',
     ],
-    stack: ['Flutter', 'Dart', 'Swift', 'Vue.js', 'Nuxt', 'TypeScript', 'REST APIs'],
+    stack: ['Flutter', 'Dart', 'Swift', 'Vue.js', 'Nuxt', 'TypeScript', 'HTML', 'CSS', 'REST APIs'],
+    platforms: ['ios', 'flutter', 'web'],
   },
   {
-    id: 'minute',
+    id: 'minute-taxi',
     company: 'Minute Taxi Routing Company',
     role: 'iOS Developer',
     location: 'Riyadh',
@@ -48,7 +55,8 @@ export const experience: Experience[] = [
       'Published releases to the App Store and ran internal testing cycles through TestFlight.',
       'Found and fixed performance bottlenecks to keep both apps fast and reliable.',
     ],
-    stack: ['Swift', 'UIKit', 'Google Maps SDK', 'Core Location', 'APNs', 'Firebase', 'TestFlight'],
+    stack: ['Swift', 'UIKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'Firebase', 'REST APIs', 'TestFlight', 'App Store Connect'],
+    platforms: ['ios'],
   },
   {
     id: 'amlak',
@@ -61,7 +69,8 @@ export const experience: Experience[] = [
     summary:
       'Documented business processes, wrote user stories and requirements, and verified compliance with SAMA regulations.',
     bullets: [],
-    stack: ['Requirements', 'User stories', 'SAMA compliance'],
+    stack: ['Requirements', 'User stories', 'Jira'],
+    platforms: [],
   },
   {
     id: 'communication-experts',
@@ -74,6 +83,7 @@ export const experience: Experience[] = [
     summary:
       'Developed Plantify, an Android plant-retail application, and contributed to web and desktop development for the AnimeKey streaming service.',
     bullets: [],
-    stack: ['Android', 'Java', 'Web'],
+    stack: ['Android', 'Java', 'HTML', 'CSS', 'JavaScript'],
+    platforms: [],
   },
 ]

@@ -1,9 +1,13 @@
+import type { PlatformKey } from '../lib/platforms'
+
 export interface SkillGroup {
   id: string
   label: string
-  /** Primary items shown prominently. */
+  /** Hue of the group header glyph; only the four platforms carry one. */
+  platform?: PlatformKey
+  /** Primary items, each shown with the projects and jobs that prove it. */
   items: string[]
-  /** Secondary items shown smaller or on demand. */
+  /** Secondary items shown as one line. */
   also?: string[]
 }
 
@@ -11,32 +15,36 @@ export const skills: SkillGroup[] = [
   {
     id: 'ios',
     label: 'iOS',
+    platform: 'ios',
     items: ['Swift', 'SwiftUI', 'UIKit', 'Combine', 'async/await', 'Core Data'],
     also: ['MapKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'Xcode', 'TestFlight', 'App Store Connect'],
   },
   {
-    id: 'web',
-    label: 'Web',
-    items: ['TypeScript', 'Vue.js', 'Nuxt', 'React', 'Tailwind CSS'],
-    also: ['JavaScript', 'HTML', 'CSS', 'Bootstrap', 'Vite', 'Responsive design', 'Accessibility'],
-  },
-  {
     id: 'cross-platform',
     label: 'Cross-platform',
+    platform: 'flutter',
     items: ['Flutter', 'Dart'],
     also: ['Unity', 'C#', 'Vuforia AR'],
+  },
+  {
+    id: 'web',
+    label: 'Web',
+    platform: 'web',
+    items: ['TypeScript', 'Vue.js', 'Nuxt', 'React', 'Tailwind CSS'],
+    also: ['JavaScript', 'HTML', 'CSS', 'Bootstrap', 'Responsive design', 'Accessibility'],
+  },
+  {
+    id: 'design',
+    label: 'Design',
+    platform: 'design',
+    items: ['UI/UX design', 'Figma', 'RTL layout'],
+    also: ['Case studies', 'Prototyping'],
   },
   {
     id: 'backend',
     label: 'Backend & data',
     items: ['Firebase', 'REST APIs', 'SQL'],
     also: ['Realtime Database', 'Cloud Firestore', 'Cloud Storage', 'Cloud Messaging'],
-  },
-  {
-    id: 'design',
-    label: 'Design',
-    items: ['UI/UX design', 'Figma', 'Design systems'],
-    also: ['Case studies', 'Prototyping', 'RTL layout', 'Arabic typography'],
   },
   {
     id: 'tools',

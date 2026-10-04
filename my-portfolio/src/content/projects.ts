@@ -32,7 +32,20 @@ export interface Project {
   icon?: string
   /** True when the source is private or belongs to an employer; the site says so instead of linking. */
   sourcePrivate?: boolean
+  /** True when Taif designed the interface or brand as well as building it; lights the plum shape of the mark. */
+  design?: boolean
+  /** How the role line is labelled; "My part" for team projects. */
+  roleLabel?: 'Role' | 'My part'
+  /** Screens exported without a device frame. Absent today; slots render when present. */
+  screens?: Screen[]
   featured: boolean
+}
+
+export interface Screen {
+  src: string
+  alt: string
+  caption: string
+  device: 'phone' | 'tablet'
 }
 
 export const projects: Project[] = [
@@ -57,21 +70,22 @@ export const projects: Project[] = [
     ],
     links: [{ label: 'Product site', url: 'https://finblade.ai', kind: 'live' }],
     sourcePrivate: true,
+    design: true,
     featured: true,
   },
   {
     slug: 'minute',
     name: 'Minute & MinuteDriver',
-    kicker: 'Two production ride-hailing apps, one iOS engineer',
+    kicker: 'Rider and driver apps for a Riyadh taxi company, both on the App Store',
     context: 'Work',
     org: 'Minute Taxi Routing Company',
     period: '2023 – 2024',
     year: 2023,
     role: 'Sole iOS developer',
     platforms: ['iOS'],
-    stack: ['Swift', 'UIKit', 'Google Maps SDK', 'Core Location', 'Firebase Realtime Database', 'APNs'],
+    stack: ['Swift', 'UIKit', 'Google Maps SDK', 'Core Location', 'APNs', 'In-app payments', 'Firebase Realtime Database', 'REST APIs'],
     summary:
-      'A rider app and a driver app for a Riyadh taxi company, both in production on the App Store. For over a year I was the only iOS developer: I designed the screens, built them in Swift and UIKit, wired the real-time data layer, and shipped every release.',
+      'A rider app and a driver app for a Riyadh taxi company, both on the App Store. For over a year I was the only iOS developer: I designed the screens, built them in Swift and UIKit, wired the real-time data layer, and shipped every release.',
     highlights: [
       'Live ride tracking on the Google Maps SDK, backed by Firebase Realtime Database and REST APIs.',
       'Core Location, push notifications and in-app payments integrated across both apps.',
@@ -83,6 +97,7 @@ export const projects: Project[] = [
       { label: 'Minute Driver on the App Store', url: 'https://apps.apple.com/sa/app/minute-driver/id1634657781', kind: 'appstore' },
     ],
     sourcePrivate: true,
+    design: true,
     featured: true,
   },
   {
@@ -112,6 +127,7 @@ export const projects: Project[] = [
       { label: 'Source', url: 'https://github.com/TaifAldehbash/Nahaj-game-based-learning-Application', kind: 'github' },
     ],
     icon: nahajIcon,
+    design: true,
     featured: true,
   },
   {
@@ -123,8 +139,9 @@ export const projects: Project[] = [
     period: '2021',
     year: 2021,
     role: 'Firestore data layer, authentication, notifications, courier-offer screens',
+    roleLabel: 'My part',
     platforms: ['iOS'],
-    stack: ['Swift', 'SwiftUI', 'Apple Maps', 'Cloud Firestore', 'Firebase Cloud Messaging'],
+    stack: ['Swift', 'SwiftUI', 'MapKit', 'Cloud Firestore', 'Firebase Cloud Messaging'],
     summary:
       'Students on the KSU campus post a pickup-and-drop-off request, student couriers bid on it, and both sides follow the order on a map. Built by a team of five running Scrum; I owned the parts every other screen depended on: the Firestore data layer, sign-in, push notifications and the courier offer flow.',
     highlights: [

@@ -2,12 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Taif Aldehbash</title>
+    <meta
+      name="description"
+      content="Taif Aldehbash is a software engineer in Riyadh shipping native iOS, Flutter and web front-ends: FinBlade AI, Minute and MinuteDriver, Nahaj and FastWay."
+    />
+    <meta name="author" content="Taif Aldehbash" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111224" />
+    <meta property="og:title" content="Taif Aldehbash" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Software engineer in Riyadh shipping native iOS, Flutter and web front-ends."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.d%7Bfill:%238C2C6C%7D@media(prefers-color-scheme:dark)%7B.d%7Bfill:%23D679B5%7D%7D%3C/style%3E%3Cpath class='d' d='M32 6 58 32 32 58 6 32Z'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" href="/fonts/spectral-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/spectral-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      // Apply a stored colour-scheme override before first paint. No stored
+      // value means the page follows the system.
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 36rem; margin: 2rem auto; padding: 0 1rem; font-family: Georgia, serif; line-height: 1.5">
+        <h1>Taif Aldehbash</h1>
+        <p>Software engineer in Riyadh, Saudi Arabia. Native iOS, Flutter and web front-ends.</p>
+        <p><a href="mailto:taifmaldehbash@gmail.com">taifmaldehbash@gmail.com</a></p>
+        <p>
+          <a href="https://linkedin.com/in/taif-aldehbash">LinkedIn</a>,
+          <a href="https://github.com/TaifAldehbash">GitHub</a>
+        </p>
+        <p>This page needs JavaScript to show the full portfolio.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

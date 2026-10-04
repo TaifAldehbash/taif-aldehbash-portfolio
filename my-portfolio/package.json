@@ -17,6 +17,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource/markazi-text": "^5.3.0",
+    "@fontsource/spectral": "^5.3.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
