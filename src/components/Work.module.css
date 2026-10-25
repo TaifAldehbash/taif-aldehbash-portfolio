@@ -1,0 +1,298 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.filter:hover {
+  border-color: var(--glass-border-strong);
+  color: var(--text);
+}
+
+.filter[aria-pressed='true'] {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--ink-950);
+}
+
+@media (forced-colors: active) {
+  .filter[aria-pressed='true'] {
+    border-width: 3px;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    gap: 6px;
+  }
+
+  .filter {
+    padding: 0 var(--space-4);
+  }
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Project card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  backdrop-filter: blur(var(--glass-blur));
+  /* Overrides .reveal's transition, so the stagger delay is applied to opacity only */
+  transition:
+    opacity 0.8s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.5s var(--ease-out),
+    border-color 0.3s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), rgb(255 255 255 / 0.08), transparent 70%);
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--glass-border-strong);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card[data-visible='true']:hover {
+  transform: translateY(-4px);
+}
+
+.cover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 8;
+  margin: var(--space-3) var(--space-3) 0;
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) - var(--space-3));
+  background:
+    radial-gradient(circle at 50% 120%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%),
+    radial-gradient(circle at 15% 10%, rgb(115 86 255 / 0.35), transparent 50%),
+    var(--ink-800);
+}
+
+/* Dotted grid texture */
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle at 50% 60%, #000, transparent 75%);
+}
+
+.appIcons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--space-4);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.card:hover .appIcons {
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* A generated "app icon" tile, or the real icon image */
+.appIcon {
+  display: grid;
+  place-items: center;
+  width: clamp(72px, 9vw, 96px);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 23%;
+  background:
+    radial-gradient(circle at 30% 20%, rgb(255 255 255 / 0.45), transparent 45%),
+    linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--ink-900)));
+  box-shadow:
+    0 18px 40px -14px var(--accent),
+    inset 0 1px 0 rgb(255 255 255 / 0.35);
+  color: var(--ink-950);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: -0.02em;
+  object-fit: cover;
+}
+
+.badges {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  z-index: 1;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(8 6 26 / 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.status {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: rgb(8 6 26 / 0.6);
+  backdrop-filter: blur(8px);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) var(--space-6);
+}
+
+.meta {
+  display: flex;
+  gap: var(--space-2);
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.summary {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding: var(--space-2) 0 0;
+  list-style: none;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 32px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 0.3);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+.link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* "More on the way" card */
+.next {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 260px;
+  padding: var(--space-6);
+  border: 1.5px dashed rgb(255 255 255 / 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.nextTitle {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+.nextText {
+  max-width: 34ch;
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}

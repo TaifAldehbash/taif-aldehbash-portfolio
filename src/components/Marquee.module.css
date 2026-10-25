@@ -1,0 +1,87 @@
+.clip {
+  position: relative;
+  overflow-x: clip;
+  padding-block: var(--space-5);
+}
+
+.pause {
+  position: absolute;
+  top: 50%;
+  right: var(--gutter);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 50%;
+  background: var(--ink-900);
+  color: var(--text);
+  transform: translateY(-50%);
+  box-shadow: 0 8px 24px -8px rgb(0 0 0 / 0.6);
+  transition: background-color 0.2s ease;
+}
+
+.pause:hover {
+  background: var(--ink-700);
+}
+
+/* The global yellow outline would vanish on the yellow band: dark ring plus light ring instead */
+.pause:focus-visible {
+  outline: 3px solid var(--ink-950);
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px var(--text);
+}
+
+.pause svg {
+  width: 16px;
+  height: 16px;
+}
+
+.band {
+  overflow: hidden;
+  padding-block: var(--space-4);
+  background: var(--sun);
+  color: var(--ink-950);
+  transform: rotate(-1.5deg) scale(1.02);
+  box-shadow: 0 20px 60px -20px rgb(255 200 61 / 0.35);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 38s linear infinite;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-right: var(--space-5);
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight: 800;
+  font-stretch: 78%;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: 0;
+}
+
+.sparkle {
+  width: 0.7em;
+  height: 0.7em;
+  color: var(--cobalt);
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,157 @@
+/* Striped frame in the three track colours */
+.frame {
+  padding: var(--space-2);
+  border-radius: calc(var(--radius-lg) + var(--space-2));
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--track-mobile) 0 16px,
+    var(--track-backend) 16px 32px,
+    var(--track-web) 32px 48px
+  );
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(var(--space-6), 7vw, var(--space-9)) clamp(var(--space-5), 6vw, var(--space-9));
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 90% 0%, rgb(115 86 255 / 0.55), transparent 50%),
+    radial-gradient(circle at 0% 100%, rgb(201 75 240 / 0.3), transparent 45%),
+    var(--ink-900);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--sun);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 12ch;
+  font-size: clamp(3rem, 9vw, 7rem);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+}
+
+.title em {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: -0.01em;
+  color: var(--violet-soft);
+}
+
+.text {
+  max-width: 44ch;
+  margin-top: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--fs-lg);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.feedback {
+  flex-basis: 100%;
+  min-height: 1.5em;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--glass-border);
+  list-style: none;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.social:hover {
+  color: var(--text);
+}
+
+.social svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Decorative shape cluster, echoing the nav */
+.shapes {
+  display: none;
+}
+
+@media (min-width: 1080px) {
+  .shapes {
+    position: absolute;
+    top: 50%;
+    right: clamp(2rem, 7vw, 6rem);
+    display: block;
+    width: 320px;
+    height: 320px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}
+
+.shapeBurst {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 210px;
+  color: var(--sun);
+  animation: spin 30s linear infinite;
+}
+
+.shapeCircle {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  width: 140px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--tomato);
+  mix-blend-mode: screen;
+}
+
+.shapeSquare {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: var(--cobalt);
+  transform: rotate(-12deg);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

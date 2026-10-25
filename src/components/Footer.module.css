@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-6) var(--space-7);
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+}
+
+.top {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.top:hover {
+  color: var(--text);
+}
