@@ -35,10 +35,10 @@
 
   /* Type */
   /* Bricolage and Instrument Serif only carry Latin, so Arabic text falls through to the next font:
-     Noto Sans Arabic for text, Marhey for the big condensed headings, Aref Ruqaa for the serif accents. */
+     Noto Sans Arabic for text, and Marhey for both the big condensed headings (700) and the serif accents (400). */
   --font-sans: 'Bricolage Grotesque Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: 'Bricolage Grotesque Variable', 'Marhey Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', 'Aref Ruqaa', ui-serif, Georgia, serif;
+  --font-serif: 'Instrument Serif', 'Marhey Variable', ui-serif, Georgia, serif;
 
   --fs-hero: clamp(3.5rem, 20vw, 11rem);
   --fs-h2: clamp(2.75rem, 8vw, 6rem);

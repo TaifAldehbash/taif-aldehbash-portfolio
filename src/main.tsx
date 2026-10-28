@@ -6,7 +6,6 @@ import '@fontsource/instrument-serif/400-italic.css'
 // Arabic glyphs: these only download on pages that show Arabic text.
 import '@fontsource-variable/noto-sans-arabic/wght.css'
 import '@fontsource-variable/marhey/wght.css'
-import '@fontsource/aref-ruqaa/arabic-400.css'
 import './styles/global.css'
 import App from './App.tsx'
 import { LocaleProvider, localeFromPath, textDir } from './i18n'

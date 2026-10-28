@@ -265,8 +265,3 @@
 :global(:root:lang(ar)) .line:last-child {
   padding-bottom: 0.12em;
 }
-
-/* Aref Ruqaa's letters sit small on their body, so the Arabic greeting runs a size up. */
-:global(:root:lang(ar)) .greeting {
-  font-size: clamp(2rem, 3.6vw, 2.875rem);
-}
