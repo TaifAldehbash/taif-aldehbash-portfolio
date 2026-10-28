@@ -11,6 +11,16 @@ npm run dev
 
 `npm run build` type-checks and builds to `dist/`, and `npm run lint` runs oxlint.
 
+## Deploy
+
+The site is live at <https://taifaldehbash.github.io/taif-aldehbash-portfolio/>. Every push to `main`
+runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which lints, builds and publishes
+`dist/` to GitHub Pages. `npm run build && npm run preview` serves the production build locally at
+the same path.
+
+Files in `public/` are served under that path too, so reference them through `asset()` in
+`src/data/profile.ts` (or `import.meta.env.BASE_URL`) rather than starting them with `/`.
+
 ## Editing content
 
 Everything on the page (bio, links, projects, case studies, skills, journey) lives in

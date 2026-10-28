@@ -1,6 +1,9 @@
 // All of the site's content lives here. Edit this file to update the portfolio;
 // the components only handle layout.
 
+/** A file in public/, prefixed with the site's base path so it also works on GitHub Pages. */
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 export type TrackId = 'mobile' | 'web' | 'backend'
 
 export interface Track {
@@ -76,7 +79,7 @@ export const profile = {
   location: 'Riyadh, Saudi Arabia · GMT+3',
   email: 'taifmaldehbash@gmail.com',
   // The iOS CV. Leave empty to hide the download buttons.
-  resumeUrl: '/Taif-Aldehbash-CV.pdf',
+  resumeUrl: asset('Taif-Aldehbash-CV.pdf'),
   socials: {
     github: 'https://github.com/TaifAldehbash',
     linkedin: 'https://www.linkedin.com/in/taif-aldehbash',
@@ -140,7 +143,7 @@ export const projects: Project[] = [
     status: 'Shipped',
     year: '2024 — Now',
     tech: ['Flutter', 'Dart', 'Swift', 'Vue.js', 'Nuxt', 'TypeScript'],
-    cover: { accent: '#1a9ab0', icons: ['/logos/finblade.png'] },
+    cover: { accent: '#1a9ab0', icons: [asset('logos/finblade.png')] },
   },
   {
     id: 'minute',
@@ -152,7 +155,7 @@ export const projects: Project[] = [
     status: 'Shipped',
     year: '2023 — 2024',
     tech: ['Swift', 'UIKit', 'Google Maps SDK', 'Core Location', 'Firebase', 'REST APIs'],
-    cover: { accent: '#2f6fe0', icons: ['/logos/minute.png', '/logos/minute-driver.png'] },
+    cover: { accent: '#2f6fe0', icons: [asset('logos/minute.png'), asset('logos/minute-driver.png')] },
     links: [
       { label: 'Minute on the App Store', href: 'https://apps.apple.com/sa/app/minute/id1633915418' },
       { label: 'Minute Driver on the App Store', href: 'https://apps.apple.com/sa/app/minute-driver/id1634657781' },
@@ -168,7 +171,7 @@ export const projects: Project[] = [
     status: 'Shipped',
     year: '2021',
     tech: ['Flutter', 'Unity', 'C#', 'Firebase'],
-    cover: { accent: '#3fd4c4', icons: ['/logos/nahaj.png'] },
+    cover: { accent: '#3fd4c4', icons: [asset('logos/nahaj.png')] },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/TaifAldehbash/Nahaj-game-based-learning-Application' }],
   },
   {
@@ -181,7 +184,7 @@ export const projects: Project[] = [
     status: 'Built',
     year: '2021',
     tech: ['Swift', 'SwiftUI', 'Apple Maps', 'Cloud Firestore'],
-    cover: { accent: '#c13cff', icons: ['/logos/fastway.png'] },
+    cover: { accent: '#c13cff', icons: [asset('logos/fastway.png')] },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/TaifAldehbash/Fastway-Delivery-Application' }],
   },
   {
@@ -204,7 +207,7 @@ export const projects: Project[] = [
     status: 'Building',
     year: '2026',
     tech: ['React', 'TypeScript', 'Vite', 'CSS Modules'],
-    cover: { accent: '#ffc83d', icons: ['/favicon.svg'] },
+    cover: { accent: '#ffc83d', icons: [asset('favicon.svg')] },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/TaifAldehbash/taif-aldehbash-portfolio' }],
   },
 ]
