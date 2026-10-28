@@ -146,7 +146,7 @@
 .arc {
   position: absolute;
   top: -18%;
-  right: -22%;
+  inset-inline-end: -22%;
   width: min(78vw, 980px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -157,7 +157,7 @@
 .orb {
   position: absolute;
   top: 15%;
-  right: 8%;
+  inset-inline-end: 8%;
   width: clamp(240px, 32vw, 440px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -201,25 +201,25 @@
 
 .chipA {
   top: 14%;
-  right: 34%;
+  inset-inline-end: 34%;
   animation-delay: -1s;
 }
 
 .chipB {
   top: 38%;
-  right: 3%;
+  inset-inline-end: 3%;
   animation-delay: -3s;
 }
 
 .chipC {
   top: 55%;
-  right: 30%;
+  inset-inline-end: 30%;
   animation-delay: -5s;
 }
 
 .chipD {
   top: 68%;
-  right: 9%;
+  inset-inline-end: 9%;
   animation-delay: -2s;
 }
 
@@ -238,13 +238,29 @@
 @media (max-width: 859px) {
   .orb {
     top: 88px;
-    right: -64px;
+    inset-inline-end: -64px;
     width: 220px;
   }
 
   .arc {
     top: -80px;
-    right: -45%;
+    inset-inline-end: -45%;
     width: 120vw;
   }
+}
+
+/* Right to left: the name's gradient runs from the start of the line too. */
+:global([dir='rtl']) .line:last-child {
+  background-image: linear-gradient(265deg, #fff 10%, #cfc2ff 55%, #ff9fd8 100%);
+}
+
+/* Arabic display type needs room for its tall letters and deep descenders. It also reads larger than
+   Latin at the same size, and the longer surname would otherwise run into the orbit chips. */
+:global(:root:lang(ar)) .title {
+  font-size: clamp(3.5rem, 18vw, 8.5rem);
+  line-height: 1.2;
+}
+
+:global(:root:lang(ar)) .line:last-child {
+  padding-bottom: 0.12em;
 }

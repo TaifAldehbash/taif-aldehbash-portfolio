@@ -26,6 +26,12 @@
   pointer-events: none;
 }
 
+.start {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .logo {
   display: inline-flex;
   align-items: center;
@@ -145,5 +151,61 @@
 
   .logo {
     padding-right: var(--space-3);
+  }
+}
+
+/* Language switch: shows the other language, in that language */
+.lang {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: rgb(13 10 39 / 0.55);
+  backdrop-filter: blur(14px);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.lang:hover {
+  border-color: var(--glass-border-strong);
+}
+
+.langShort {
+  display: none;
+}
+
+/* Small phones: the logo becomes just its mark and the switch its first letter, so the
+   nav still fits at 320px. The hidden words stay readable to screen readers. */
+@media (max-width: 519px) {
+  .logo {
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+
+  .lang {
+    width: 44px;
+    padding: 0;
+  }
+
+  .langShort {
+    display: inline;
+  }
+
+  .logoText,
+  .langLong {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 }

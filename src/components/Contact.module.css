@@ -110,7 +110,7 @@
   .shapes {
     position: absolute;
     top: 50%;
-    right: clamp(2rem, 7vw, 6rem);
+    inset-inline-end: clamp(2rem, 7vw, 6rem);
     display: block;
     width: 320px;
     height: 320px;
@@ -122,7 +122,7 @@
 .shapeBurst {
   position: absolute;
   top: 0;
-  left: 40px;
+  inset-inline-start: 40px;
   width: 210px;
   color: var(--sun);
   animation: spin 30s linear infinite;
@@ -130,7 +130,7 @@
 
 .shapeCircle {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   bottom: 30px;
   width: 140px;
   aspect-ratio: 1;
@@ -142,7 +142,7 @@
 .shapeSquare {
   position: absolute;
   bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 120px;
   aspect-ratio: 1;
   border-radius: 14px;

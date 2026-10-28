@@ -24,27 +24,38 @@ Files in `public/` are referenced through `asset()` in `src/data/profile.ts` (or
 
 ## Search engines and link previews
 
-- `npm run build` pre-renders the page into `dist/index.html` ([`scripts/prerender.mjs`](scripts/prerender.mjs)
-  renders [`src/entry-server.tsx`](src/entry-server.tsx)), so crawlers and link previews see the full content
-  without running JavaScript. The browser then hydrates it.
-- `index.html` holds the title, description, canonical URL, Open Graph and X tags, and the
-  `ProfilePage` structured data. `public/robots.txt` and `public/sitemap.xml` point crawlers at the site.
-- The share image is `public/og-image.jpg` (1200x630). Its source is [`scripts/og-card.html`](scripts/og-card.html):
-  render it with headless Chrome, then convert it to JPEG to keep it under WhatsApp's ~300 KB limit:
+- `npm run build` pre-renders one page per language, `dist/index.html` (English) and `dist/ar/index.html`
+  (Arabic): [`scripts/prerender.mjs`](scripts/prerender.mjs) renders [`src/entry-server.tsx`](src/entry-server.tsx),
+  so crawlers and link previews see the full content without running JavaScript. The browser then hydrates it.
+- [`src/seo.ts`](src/seo.ts) writes each page's title, description, canonical URL, `hreflang` links between
+  the two languages, Open Graph and X tags, and `ProfilePage` structured data into the block marked
+  `<!--seo:start-->` in `index.html`. `public/robots.txt` and `public/sitemap.xml` point crawlers at both pages.
+- The share images are `public/og-image.jpg` and `public/og-image-ar.jpg` (1200x630). Their sources are
+  [`scripts/og-card.html`](scripts/og-card.html) and [`scripts/og-card-ar.html`](scripts/og-card-ar.html):
+  render one with headless Chrome, then convert it to JPEG to keep it under WhatsApp's ~300 KB limit:
 
   ```bash
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars --window-size=1200,630 --force-device-scale-factor=1 --virtual-time-budget=3000 --allow-file-access-from-files --screenshot=og.png "file://$PWD/scripts/og-card.html"
   sips -s format jpeg -s formatOptions 86 og.png --out public/og-image.jpg && rm og.png
   ```
 
-- The site URL is written out in `index.html`, `public/robots.txt`, `public/sitemap.xml` and `siteUrl` in
-  `src/data/profile.ts`. Update all four if the domain changes, and bump `<lastmod>` in the sitemap after big
-  content changes.
+  For the Arabic image, swap in `og-card-ar.html` and `og-image-ar.jpg`.
+
+- The site URL is written out in `public/robots.txt`, `public/sitemap.xml`, `siteUrl` in `src/data/profile.ts`
+  and the two share-card sources. Update them all if the domain changes, and bump `<lastmod>` in the sitemap
+  after big content changes.
 
 ## Editing content
 
 Everything on the page (bio, links, projects, case studies, skills, journey) lives in
-[`src/data/profile.ts`](src/data/profile.ts).
+[`src/data/profile.ts`](src/data/profile.ts). Interface text (buttons, labels, screen-reader phrases) lives in
+[`src/data/ui.ts`](src/data/ui.ts).
+
+The site is in English at `/` and Arabic at `/ar/`. Any text a visitor reads is written as
+`{ en: '…', ar: '…' }`; a plain string (a company or tech name, say) shows the same in both. Write both
+languages when you add or change text. Counts that change with a number ("1 project", "مشروعان") go through
+`plural()` in [`src/i18n.ts`](src/i18n.ts), since Arabic has six plural forms. The Arabic page is right to
+left, so use logical CSS properties (`inset-inline-start`, `margin-inline-end`) rather than `left`/`right`.
 
 - **New project:** add an entry to `projects`. `tracks` decides which filter it shows under
   (`mobile`, `web`, `backend`). `status` is `Shipped` (released to users), `Built` (finished
@@ -59,7 +70,10 @@ Everything on the page (bio, links, projects, case studies, skills, journey) liv
 
 ```
 src/
-  data/profile.ts        content
+  data/profile.ts        content, in English and Arabic
+  data/ui.ts             interface text, in English and Arabic
+  i18n.ts                language from the URL, text and plural helpers
+  seo.ts                 per-language <head> tags
   styles/global.css      design tokens, reset, buttons, chips
   components/            one component + CSS module per section
   hooks/                 scroll reveal and active-section tracking

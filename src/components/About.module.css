@@ -44,7 +44,7 @@
 .avatarSparkle {
   position: absolute;
   top: 12%;
-  right: 14%;
+  inset-inline-end: 14%;
   width: 18%;
   color: var(--sun);
 }

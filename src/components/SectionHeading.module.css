@@ -61,3 +61,7 @@
     gap: var(--space-7);
   }
 }
+
+:global([dir='rtl']) .eyebrow::before {
+  background: linear-gradient(270deg, transparent, var(--violet-soft));
+}

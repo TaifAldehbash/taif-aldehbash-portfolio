@@ -133,3 +133,11 @@
   white-space: normal;
   text-align: center;
 }
+
+:global([dir='rtl']) .arrow {
+  transform: scaleX(-1);
+}
+
+:global([dir='rtl']) .card:hover .arrow {
+  transform: scaleX(-1) translate(3px, -3px);
+}

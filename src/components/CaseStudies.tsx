@@ -1,23 +1,27 @@
 import type { CSSProperties } from 'react'
 import { caseStudies, profile, type CaseStudy } from '../data/profile'
+import { ui } from '../data/ui'
 import { useReveal } from '../hooks/useReveal'
+import { useLocale, useText } from '../i18n'
 import { ArrowUpRight, Behance } from './Icons'
 import { SectionHeading } from './SectionHeading'
 import s from './CaseStudies.module.css'
 
 export function CaseStudies() {
+  const t = useText()
+
   return (
     <section id="design" className="section" aria-labelledby="design-title">
       <div className="container">
         <SectionHeading
           id="design-title"
-          eyebrow="UI/UX case studies"
+          eyebrow={t(ui.design.eyebrow)}
           title={
             <>
-              Design <em>too</em>
+              {t(ui.design.title)} <em>{t(ui.design.titleAccent)}</em>
             </>
           }
-          intro={profile.designIntro}
+          intro={t(profile.designIntro)}
         />
 
         <ul className={s.grid}>
@@ -28,8 +32,10 @@ export function CaseStudies() {
 
         <a href={profile.socials.behance} className={`btn btn-ghost ${s.more}`} target="_blank" rel="noreferrer">
           <Behance />
-          More on Behance
-          <span className="visually-hidden">: full case studies (opens in a new tab)</span>
+          {t(ui.design.more)}
+          <span className="visually-hidden">
+            {t(ui.design.moreHidden)} {t(ui.opensNewTab)}
+          </span>
           <ArrowUpRight data-nudge="diag" />
         </a>
       </div>
@@ -39,6 +45,8 @@ export function CaseStudies() {
 
 function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const ref = useReveal<HTMLLIElement>()
+  const locale = useLocale()
+  const t = useText()
 
   return (
     <li ref={ref} className={`reveal ${s.card}`} style={{ '--reveal-delay': `${(index % 2) * 90}ms` } as CSSProperties}>
@@ -47,14 +55,15 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
       </div>
       <div className={s.body}>
         <p className={s.meta}>
-          <span>{study.team}</span>
+          <span>{t(study.team)}</span>
           <span aria-hidden="true">·</span>
-          <span>{study.published}</span>
+          <span>{t(study.published)}</span>
         </p>
         <h3 className={s.title}>
           <a href={study.href} className={s.link} target="_blank" rel="noreferrer">
-            {study.title}
-            {study.titleAr && (
+            {t(study.title)}
+            {/* On the English page, Arabic product names also show in Arabic. */}
+            {locale === 'en' && study.titleAr && (
               <>
                 {' '}
                 <span lang="ar" dir="rtl" className={s.titleAr}>
@@ -62,11 +71,14 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
                 </span>
               </>
             )}
-            <span className="visually-hidden"> case study on Behance (opens in a new tab)</span>
+            <span className="visually-hidden">
+              {locale === 'ar' ? ' – ' : ' '}
+              {t(ui.design.caseHidden)} {t(ui.opensNewTab)}
+            </span>
           </a>
           <ArrowUpRight className={s.arrow} />
         </h3>
-        <p className={s.summary}>{study.summary}</p>
+        <p className={s.summary}>{t(study.summary)}</p>
       </div>
     </li>
   )

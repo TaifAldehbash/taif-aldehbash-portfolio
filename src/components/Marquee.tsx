@@ -1,5 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react'
 import { marquee } from '../data/profile'
+import { ui } from '../data/ui'
+import { useText } from '../i18n'
 import { Pause, Play, Sparkle } from './Icons'
 import s from './Marquee.module.css'
 
@@ -36,6 +38,7 @@ function subscribe(notify: () => void) {
 
 export function Marquee() {
   const items = [...marquee, ...marquee]
+  const t = useText()
   // The server snapshot is "not paused", so the pre-rendered HTML and hydration match.
   const paused = useSyncExternalStore(subscribe, readPaused, () => false)
 
@@ -61,8 +64,8 @@ export function Marquee() {
         type="button"
         className={s.pause}
         aria-pressed={paused}
-        aria-label="Pause animations"
-        title={paused ? 'Play animations' : 'Pause animations'}
+        aria-label={t(ui.pauseAnimations)}
+        title={paused ? t(ui.playAnimations) : t(ui.pauseAnimations)}
         onClick={() => savePaused(!paused)}
       >
         {paused ? <Play /> : <Pause />}
