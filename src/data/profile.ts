@@ -84,7 +84,8 @@ export const profile = {
   },
   bio: [
     "I'm a software engineer in Riyadh with more than three years of building and shipping mobile apps and web front ends. I studied software engineering at King Saud University and trained in UI/UX design at Tuwaiq Academy.",
-    'At Minute Taxi Routing Company I was the sole iOS developer on two production ride-hailing apps, from design and Swift code to App Store releases. Now I lead mobile development on FinBlade AI at ICS Arabia. Next, I want to grow into full-stack work through personal projects in native iOS, React and backend, starting with this site.',
+    // Keep this section commented
+    // 'At Minute Taxi Routing Company I was the sole iOS developer on two production ride-hailing apps, from design and Swift code to App Store releases. Now I lead mobile development on FinBlade AI at ICS Arabia. Next, I want to grow into full-stack work through personal projects in native iOS, React and backend, starting with this site.',
   ],
   learning: ['React', 'Backend APIs', 'Databases'],
   workIntro: "Apps I've built at work and on other projects, across native iOS, Flutter, Android and the web.",
