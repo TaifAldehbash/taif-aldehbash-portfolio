@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useSyncExternalStore } from 'react'
 import { marquee } from '../data/profile'
 import { Pause, Play, Sparkle } from './Icons'
 import s from './Marquee.module.css'
 
 const STORAGE_KEY = 'motion-paused'
 
+// The pause choice is a tiny external store: saved in localStorage, with an in-memory
+// fallback for when storage is unavailable (private mode).
+let memory: boolean | null = null
+const listeners = new Set<() => void>()
+
 function readPaused() {
+  if (memory !== null) return memory
   try {
     return localStorage.getItem(STORAGE_KEY) === 'true'
   } catch {
@@ -13,18 +19,29 @@ function readPaused() {
   }
 }
 
+function savePaused(next: boolean) {
+  memory = next
+  try {
+    localStorage.setItem(STORAGE_KEY, String(next))
+  } catch {
+    // Storage is unavailable; the in-memory value still works for this visit.
+  }
+  listeners.forEach((notify) => notify())
+}
+
+function subscribe(notify: () => void) {
+  listeners.add(notify)
+  return () => listeners.delete(notify)
+}
+
 export function Marquee() {
   const items = [...marquee, ...marquee]
-  const [paused, setPaused] = useState(readPaused)
+  // The server snapshot is "not paused", so the pre-rendered HTML and hydration match.
+  const paused = useSyncExternalStore(subscribe, readPaused, () => false)
 
   // Pausing here stops every looping animation on the page, not just the band.
   useEffect(() => {
     document.documentElement.dataset.motion = paused ? 'paused' : 'running'
-    try {
-      localStorage.setItem(STORAGE_KEY, String(paused))
-    } catch {
-      // Storage can be unavailable (private mode); the toggle still works for this visit.
-    }
   }, [paused])
 
   return (
@@ -46,7 +63,7 @@ export function Marquee() {
         aria-pressed={paused}
         aria-label="Pause animations"
         title={paused ? 'Play animations' : 'Pause animations'}
-        onClick={() => setPaused((p) => !p)}
+        onClick={() => savePaused(!paused)}
       >
         {paused ? <Play /> : <Pause />}
       </button>

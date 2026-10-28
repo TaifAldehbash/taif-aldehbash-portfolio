@@ -304,18 +304,18 @@ p {
 }
 
 /* Scroll reveal (see useReveal) */
+/* Hidden only once JavaScript is running (index.html adds .js), so the pre-rendered
+   page stays readable without it. */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition:
     opacity 0.8s var(--ease-out),
     transform 0.8s var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal[data-visible='true'] {
-  opacity: 1;
-  transform: none;
+.js .reveal:not([data-visible='true']) {
+  opacity: 0;
+  transform: translateY(24px);
 }
 
 /* Set by the pause button in the marquee */
@@ -326,7 +326,7 @@ p {
 }
 
 @media print {
-  .reveal {
+  .js .reveal:not([data-visible='true']) {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -350,7 +350,7 @@ p {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal {
+  .js .reveal:not([data-visible='true']) {
     opacity: 1;
     transform: none;
   }

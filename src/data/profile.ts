@@ -78,6 +78,7 @@ export const profile = {
   availability: 'Based in Riyadh, Saudi Arabia',
   location: 'Riyadh, Saudi Arabia · GMT+3',
   email: 'taifmaldehbash@gmail.com',
+  siteUrl: 'https://taif-aldehbash-portfolio.vercel.app',
   // The iOS CV. Leave empty to hide the download buttons.
   resumeUrl: asset('Taif-Aldehbash-CV.pdf'),
   socials: {
@@ -204,11 +205,14 @@ export const projects: Project[] = [
     summary: "The site you're on, and my first React project. Built with React, TypeScript, Vite and CSS Modules.",
     tracks: ['web'],
     context: 'Personal',
-    status: 'Building',
+    status: 'Shipped',
     year: '2026',
     tech: ['React', 'TypeScript', 'Vite', 'CSS Modules'],
     cover: { accent: '#ffc83d', icons: [asset('favicon.svg')] },
-    links: [{ label: 'Source on GitHub', href: 'https://github.com/TaifAldehbash/taif-aldehbash-portfolio' }],
+    links: [
+      { label: 'Live site', href: profile.siteUrl },
+      { label: 'Source on GitHub', href: 'https://github.com/TaifAldehbash/taif-aldehbash-portfolio' },
+    ],
   },
 ]
 
