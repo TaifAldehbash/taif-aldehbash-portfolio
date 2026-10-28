@@ -13,13 +13,14 @@ npm run dev
 
 ## Deploy
 
-The site is live at <https://taifaldehbash.github.io/taif-aldehbash-portfolio/>. Every push to `main`
-runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which lints, builds and publishes
-`dist/` to GitHub Pages. `npm run build && npm run preview` serves the production build locally at
-the same path.
+The site is hosted on [Vercel](https://vercel.com), which builds and publishes `main` on every push and
+creates a preview link for every pull request. Vercel detects the Vite setup on its own: build command
+`npm run build`, output directory `dist`.
 
-Files in `public/` are served under that path too, so reference them through `asset()` in
-`src/data/profile.ts` (or `import.meta.env.BASE_URL`) rather than starting them with `/`.
+Files in `public/` are referenced through `asset()` in `src/data/profile.ts` (or
+`import.meta.env.BASE_URL`) rather than with a leading `/`, so the site also works from a sub-path.
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) can still publish to GitHub Pages at
+`/taif-aldehbash-portfolio/`: it runs only when started by hand and builds with `BASE_PATH` set.
 
 ## Editing content
 
