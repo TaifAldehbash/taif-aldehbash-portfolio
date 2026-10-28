@@ -34,8 +34,11 @@
   --glass-blur: 18px;
 
   /* Type */
-  --font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  /* Bricolage and Instrument Serif only carry Latin, so Arabic text falls through to the next font:
+     Noto Sans Arabic for text, and Marhey for both the big condensed headings (700) and the serif accents (400). */
+  --font-sans: 'Bricolage Grotesque Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Marhey Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', 'Marhey Variable', ui-serif, Georgia, serif;
 
   --fs-hero: clamp(3.5rem, 20vw, 11rem);
   --fs-h2: clamp(2.75rem, 8vw, 6rem);
@@ -200,7 +203,7 @@ p {
 .skip-link {
   position: absolute;
   top: var(--space-3);
-  left: var(--space-3);
+  inset-inline-start: var(--space-3);
   z-index: 100;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-pill);
@@ -354,4 +357,28 @@ p {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Arabic. Letters join, so letter-spacing would break the words apart; Arabic has no italics;
+   and its taller letter shapes need more line height than the tight Latin display type. */
+:root:lang(ar) * {
+  letter-spacing: 0 !important;
+  font-style: normal !important;
+}
+
+:root:lang(ar) body {
+  line-height: 1.8;
+}
+
+:root:lang(ar) :is(h1, h2, h3) {
+  line-height: 1.3;
+}
+
+/* Right to left: "opens elsewhere" arrows point up and to the left. */
+[dir='rtl'] svg[data-nudge='diag'] {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .btn:hover svg[data-nudge='diag'] {
+  transform: scaleX(-1) translate(2px, -2px);
 }

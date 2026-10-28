@@ -165,7 +165,7 @@
 .badges {
   position: absolute;
   bottom: var(--space-3);
-  left: var(--space-3);
+  inset-inline-start: var(--space-3);
   z-index: 1;
   display: flex;
   gap: var(--space-2);
@@ -189,7 +189,7 @@
 .status {
   position: absolute;
   top: var(--space-3);
-  right: var(--space-3);
+  inset-inline-end: var(--space-3);
   z-index: 1;
   display: inline-flex;
   align-items: center;
@@ -295,4 +295,8 @@
   margin-bottom: var(--space-3);
   color: var(--text-muted);
   font-size: var(--fs-sm);
+}
+
+:global([dir='rtl']) .link svg {
+  transform: scaleX(-1);
 }

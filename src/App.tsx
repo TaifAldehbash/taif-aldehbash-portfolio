@@ -7,12 +7,16 @@ import { Marquee } from './components/Marquee'
 import { Nav } from './components/Nav'
 import { Tracks } from './components/Tracks'
 import { Work } from './components/Work'
+import { ui } from './data/ui'
+import { useText } from './i18n'
 
 export default function App() {
+  const t = useText()
+
   return (
     <>
       <a href="#main" className="skip-link">
-        Skip to content
+        {t(ui.skipToContent)}
       </a>
       <div className="backdrop" aria-hidden="true" />
       <Nav />

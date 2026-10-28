@@ -7,7 +7,7 @@
 .pause {
   position: absolute;
   top: 50%;
-  right: var(--gutter);
+  inset-inline-end: var(--gutter);
   z-index: 1;
   display: grid;
   place-items: center;
@@ -83,5 +83,16 @@
 @keyframes scroll {
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* Right to left: scroll the other way, so the start of the band leads. */
+:global([dir='rtl']) .track {
+  animation-name: scroll-rtl;
+}
+
+@keyframes scroll-rtl {
+  to {
+    transform: translateX(50%);
   }
 }

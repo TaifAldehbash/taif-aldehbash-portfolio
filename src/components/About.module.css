@@ -44,7 +44,7 @@
 .avatarSparkle {
   position: absolute;
   top: 12%;
-  right: 14%;
+  inset-inline-end: 14%;
   width: 18%;
   color: var(--sun);
 }
@@ -193,6 +193,7 @@
 }
 
 .journeyTitle {
+  font-family: var(--font-display);
   margin-bottom: var(--space-4);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;

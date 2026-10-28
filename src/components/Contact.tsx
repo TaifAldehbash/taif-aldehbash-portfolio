@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data/profile'
+import { copiedMessage, copyFailedMessage, ui } from '../data/ui'
 import { useReveal } from '../hooks/useReveal'
+import { useLocale, useText } from '../i18n'
 import { ArrowDown, Behance, Burst, Check, Copy, GitHub, LinkedIn, Mail } from './Icons'
 import s from './Contact.module.css'
 
@@ -8,6 +10,8 @@ type CopyState = 'idle' | 'copied' | 'failed'
 
 export function Contact() {
   const ref = useReveal<HTMLDivElement>()
+  const locale = useLocale()
+  const t = useText()
   const [copyState, setCopyState] = useState<CopyState>('idle')
   // Bumped on every click so the status message re-announces on repeat copies.
   const [copyCount, setCopyCount] = useState(0)
@@ -45,25 +49,25 @@ export function Contact() {
               <Burst className={s.shapeBurst} />
               <span className={s.shapeCircle} />
             </div>
-            <p className={s.eyebrow}>Contact</p>
+            <p className={s.eyebrow}>{t(ui.contact.eyebrow)}</p>
             <h2 id="contact-title" className={s.title}>
-              Let&rsquo;s build something <em>together</em>
+              {t(ui.contact.titleStart)} <em>{t(ui.contact.titleAccent)}</em>
             </h2>
-            <p className={s.text}>{profile.contactText}</p>
+            <p className={s.text}>{t(profile.contactText)}</p>
 
             <div className={s.actions}>
               <a href={`mailto:${profile.email}`} className="btn btn-primary">
                 <Mail />
-                Email me
+                {t(ui.contact.emailMe)}
               </a>
               <button type="button" className="btn btn-ghost" onClick={copyEmail}>
                 {copyState === 'copied' ? <Check /> : <Copy />}
-                {copyState === 'copied' ? 'Copied' : 'Copy email'}
+                {copyState === 'copied' ? t(ui.contact.copied) : t(ui.contact.copyEmail)}
               </button>
               {profile.resumeUrl && (
                 <a href={profile.resumeUrl} className="btn btn-ghost" download>
-                  Download CV
-                  <span className="visually-hidden"> (PDF)</span>
+                  {t(ui.downloadCv)}
+                  <span className="visually-hidden"> {t(ui.pdf)}</span>
                   <ArrowDown data-nudge="down" />
                 </a>
               )}
@@ -71,8 +75,8 @@ export function Contact() {
                 {copyState !== 'idle' && (
                   <span key={copyCount}>
                     {copyState === 'copied'
-                      ? `${profile.email} copied to clipboard`
-                      : `Couldn't copy. The address is ${profile.email}`}
+                      ? copiedMessage(locale, profile.email)
+                      : copyFailedMessage(locale, profile.email)}
                   </span>
                 )}
               </span>
@@ -85,7 +89,7 @@ export function Contact() {
                     <a href={href} className={s.social} target="_blank" rel="noreferrer">
                       <Icon />
                       {label}
-                      <span className="visually-hidden"> (opens in a new tab)</span>
+                      <span className="visually-hidden"> {t(ui.opensNewTab)}</span>
                     </a>
                   </li>
                 ))}
