@@ -34,8 +34,11 @@
   --glass-blur: 18px;
 
   /* Type */
+  /* Bricolage and Instrument Serif only carry Latin, so Arabic text falls through to the next font:
+     Noto Sans Arabic for text, Marhey for the big condensed headings, Aref Ruqaa for the serif accents. */
   --font-sans: 'Bricolage Grotesque Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', 'Amiri', ui-serif, Georgia, serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Marhey Variable', 'Noto Sans Arabic Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', 'Aref Ruqaa', ui-serif, Georgia, serif;
 
   --fs-hero: clamp(3.5rem, 20vw, 11rem);
   --fs-h2: clamp(2.75rem, 8vw, 6rem);

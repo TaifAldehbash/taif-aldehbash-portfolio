@@ -56,6 +56,9 @@ The site is in English at `/` and Arabic at `/ar/`. Any text a visitor reads is 
 languages when you add or change text. Counts that change with a number ("1 project", "مشروعان") go through
 `plural()` in [`src/i18n.ts`](src/i18n.ts), since Arabic has six plural forms. The Arabic page is right to
 left, so use logical CSS properties (`inset-inline-start`, `margin-inline-end`) rather than `left`/`right`.
+Its fonts are Marhey for the big headings (`--font-display`), Aref Ruqaa for the accents that use Instrument
+Serif in English (`--font-serif`), and Noto Sans Arabic for everything else (`--font-sans`). The Latin fonts
+come first in each stack and carry no Arabic, so Arabic text falls through to these.
 
 - **New project:** add an entry to `projects`. `tracks` decides which filter it shows under
   (`mobile`, `web`, `backend`). `status` is `Shipped` (released to users), `Built` (finished

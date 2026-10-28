@@ -55,6 +55,7 @@
 }
 
 .title {
+  font-family: var(--font-display);
   display: flex;
   flex-direction: column;
   font-size: var(--fs-hero);
@@ -257,10 +258,15 @@
 /* Arabic display type needs room for its tall letters and deep descenders. It also reads larger than
    Latin at the same size, and the longer surname would otherwise run into the orbit chips. */
 :global(:root:lang(ar)) .title {
-  font-size: clamp(3.5rem, 18vw, 8.5rem);
+  font-size: clamp(3.5rem, 18vw, 8.25rem);
   line-height: 1.2;
 }
 
 :global(:root:lang(ar)) .line:last-child {
   padding-bottom: 0.12em;
+}
+
+/* Aref Ruqaa's letters sit small on their body, so the Arabic greeting runs a size up. */
+:global(:root:lang(ar)) .greeting {
+  font-size: clamp(2rem, 3.6vw, 2.875rem);
 }
