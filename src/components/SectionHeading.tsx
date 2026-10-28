@@ -21,7 +21,7 @@ export function SectionHeading({ id, eyebrow, title, count, intro }: Props) {
           {title}
           {count !== undefined && (
             <sup className={s.count}>
-              <span className="visually-hidden">(</span>
+              <span className="visually-hidden"> (</span>
               {String(count).padStart(2, '0')}
               <span className="visually-hidden"> projects)</span>
             </sup>

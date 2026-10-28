@@ -32,11 +32,13 @@ export function Hero() {
         </p>
 
         <h1 id="hero-title" className={s.title}>
-          <span className={s.greeting}>Hi, I&rsquo;m</span>
+          {/* The spaces keep the words apart in the HTML text crawlers and screen readers get;
+              the flex layout ignores them visually. */}
+          <span className={s.greeting}>Hi, I&rsquo;m</span>{' '}
           <span className={s.line}>
             {profile.firstName}
             <Burst className={s.burst} />
-          </span>
+          </span>{' '}
           <span className={s.line}>{profile.lastName}</span>
         </h1>
 
