@@ -25,7 +25,7 @@ export function About() {
 
         <div className={s.layout}>
           <div ref={portraitRef} className={`reveal glass ${s.portrait}`}>
-            {/* Swap for <img src="/portrait.jpg" alt="Taif Aldehbash" /> once you have a photo */}
+            {/* Swap for <img src={`${import.meta.env.BASE_URL}portrait.jpg`} alt="Taif Aldehbash" /> once you have a photo */}
             <div className={s.avatar} aria-hidden="true">
               <span>TA</span>
               <Sparkle className={s.avatarSparkle} />
