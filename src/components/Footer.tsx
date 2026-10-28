@@ -6,7 +6,8 @@ const year = new Date().getFullYear()
 export function Footer() {
   return (
     <footer className={`container ${s.footer}`}>
-      <p>
+      {/* The year is baked in at build time; this skips the warning if a visit crosses New Year. */}
+      <p suppressHydrationWarning>
         © {year} {profile.name}
       </p>
       <p>Designed and built with React, TypeScript &amp; Vite</p>

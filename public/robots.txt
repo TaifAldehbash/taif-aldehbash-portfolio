@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taif-aldehbash-portfolio.vercel.app/sitemap.xml
