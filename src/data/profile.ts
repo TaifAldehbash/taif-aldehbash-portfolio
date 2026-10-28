@@ -79,7 +79,7 @@ export const profile = {
   role: { en: 'Mobile and front-end engineer', ar: 'تطوير تطبيقات الجوال والواجهات الأمامية' },
   tagline: {
     en: 'I build and ship native iOS, Flutter and web apps. I was the sole iOS developer on two production ride-hailing apps, and now I lead mobile development on a Gen-AI platform.',
-    ar: 'أبني تطبيقات iOS أصلية وتطبيقات Flutter وتطبيقات ويب وأوصلها إلى المستخدمين. تولّيت وحدي تطوير iOS لتطبيقين لنقل الركاب يعملان في الإنتاج، وأقود اليوم تطوير تطبيقات الجوال في منصة للذكاء الاصطناعي التوليدي.',
+    ar: 'أبني تطبيقات iOS أصلية وتطبيقات Flutter وتطبيقات ويب وأوصلها إلى المستخدمين. تولّيت تطوير iOS لتطبيقين لنقل الركاب يعملان في الإنتاج، وأقود اليوم تطوير تطبيقات الجوال في منصة للذكاء الاصطناعي التوليدي.',
   },
   availability: { en: 'Based in Riyadh, Saudi Arabia', ar: 'من الرياض، المملكة العربية السعودية' },
   location: { en: 'Riyadh, Saudi Arabia · GMT+3', ar: 'الرياض، المملكة العربية السعودية · GMT+3' },
@@ -100,7 +100,7 @@ export const profile = {
     // Keep this section commented
     // {
     //   en: 'At Minute Taxi Routing Company I was the sole iOS developer on two production ride-hailing apps, from design and Swift code to App Store releases. Now I lead mobile development on FinBlade AI at ICS Arabia. Next, I want to grow into full-stack work through personal projects in native iOS, React and backend, starting with this site.',
-    //   ar: 'في Minute Taxi Routing Company تولّيت وحدي تطوير iOS لتطبيقين لنقل الركاب يعملان في الإنتاج، من التصميم وكتابة Swift إلى الإطلاق على App Store. وأقود اليوم تطوير الجوال في FinBlade AI لدى ICS Arabia. وأطمح بعد ذلك إلى العمل على كامل المنظومة عبر مشاريع شخصية في iOS الأصلي وReact والخلفية، بدءًا بهذا الموقع.',
+    //   ar: 'في Minute Taxi Routing Company تولّيت تطوير iOS لتطبيقين لنقل الركاب يعملان في الإنتاج، من التصميم وكتابة Swift إلى الإطلاق على App Store. وأقود اليوم تطوير الجوال في FinBlade AI لدى ICS Arabia. وأطمح بعد ذلك إلى العمل على كامل المنظومة عبر مشاريع شخصية في iOS الأصلي وReact والخلفية، بدءًا بهذا الموقع.',
     // },
   ] as Text[],
   learning: ['React', { en: 'Backend APIs', ar: 'واجهات API للخلفية' }, { en: 'Databases', ar: 'قواعد البيانات' }] as Text[],
@@ -185,7 +185,7 @@ export const projects: Project[] = [
     title: { en: 'Minute and Minute Driver', ar: 'Minute وMinute Driver' },
     summary: {
       en: 'Two production ride-hailing apps. As the sole iOS developer I owned design, development, testing and App Store releases for over a year, including real-time ride tracking and in-app payments.',
-      ar: 'تطبيقان لنقل الركاب يعملان في الإنتاج. تولّيت وحدي تطوير iOS لأكثر من عام، من التصميم والتطوير والاختبار إلى الإطلاق على App Store، بما في ذلك تتبّع الرحلات لحظيًا والمدفوعات داخل التطبيق.',
+      ar: 'تطبيقان لنقل الركاب يعملان في الإنتاج. تولّيت تطوير iOS لأكثر من عام، من التصميم والتطوير والاختبار إلى الإطلاق على App Store، بما في ذلك تتبّع الرحلات لحظيًا والمدفوعات داخل التطبيق.',
     },
     tracks: ['mobile', 'backend'],
     context: 'Minute Taxi Routing Company',
