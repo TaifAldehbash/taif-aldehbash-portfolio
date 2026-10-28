@@ -122,7 +122,7 @@ export const stats: Stat[] = [
   { value: '3+', label: { en: 'years shipping mobile and web apps', ar: 'سنوات في إطلاق تطبيقات الجوال والويب' } },
   {
     value: '2',
-    label: { en: 'production iOS apps as the sole iOS developer', ar: 'تطبيقا iOS في الإنتاج تولّيت تطويرهما وحدي' },
+    label: { en: 'production iOS apps as the sole iOS developer', ar: 'تطبيقا iOS في الإنتاج تولّيت تطويرهما' },
   },
   { value: '4.51', label: { en: 'GPA out of 5, King Saud University', ar: 'المعدل من 5، جامعة الملك سعود' } },
 ]
